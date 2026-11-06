@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Security Headers / Content-Security-Policy [SEC-02] -->
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' 'unsafe-inline';
+      style-src 'self' 'unsafe-inline';
+      font-src 'self' data:;
+      img-src 'self' data: blob: https://images.unsplash.com https://martenscrap.com;
+      connect-src 'self';
+      frame-ancestors 'none';
+      base-uri 'self';
+      form-action 'self';
+    " />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <title>Martenscrap | Marcapáginas Magnéticos, Figuras 3D & Coleccionables</title>
+    <meta name="description" content="Martenscrap: Marcapáginas personalizados magnéticos, textil, papelería kawaii Legami, figuras 3D y todo tipo de complementos de tus personajes preferidos. Diseños propios por Marta Pastor Escribano." />
+    <link rel="canonical" href="https://martenscrap.com/" />
+    
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://martenscrap.com/" />
+    <meta property="og:title" content="Martenscrap | Marcapáginas Magnéticos, Figuras 3D & Coleccionables" />
+    <meta property="og:description" content="Descubre el universo artesanal de Martenscrap por Marta Pastor. Pequeños tesoros coleccionables para lectores empedernidos y fans de la cultura pop." />
+    <meta property="og:image" content="https://martenscrap.com/wp-content/uploads/2026/10/IMG_7353.webp" />
+
+    <!-- Twitter Card [SEO-04] -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Martenscrap | Marcapáginas Magnéticos & Creación 3D" />
+    <meta name="twitter:description" content="Pequeños tesoros artesanales, papelería Legami y coleccionables por Marta Pastor Escribano." />
+    <meta name="twitter:image" content="https://martenscrap.com/wp-content/uploads/2026/10/IMG_7353.webp" />
+
+    <!-- Schema.org Rich Snippets [SEO-03] -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://martenscrap.com/#organization",
+          "name": "Martenscrap",
+          "alternateName": "Marta Pastor Escribano",
+          "url": "https://martenscrap.com/",
+          "logo": "https://martenscrap.com/wp-content/uploads/2023/06/logo-sombra-2-1.png",
+          "sameAs": [
+            "https://www.instagram.com/martenscrap/",
+            "https://www.tiktok.com/@martenscrap"
+          ]
+        },
+        {
+          "@type": "Store",
+          "@id": "https://martenscrap.com/#store",
+          "name": "Martenscrap Taller Artesanal",
+          "url": "https://martenscrap.com/",
+          "priceRange": "€€",
+          "telephone": "+34-600000000",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Valencia",
+            "addressCountry": "ES"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Colección de Marcapáginas, Impresión 3D y Papelería",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Product",
+                  "name": "Dragón Articulado de Cristal Iridiscente 3D",
+                  "description": "Figura articulada impresa en 3D con filamento seda multicromático.",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "18.90",
+                    "priceCurrency": "EUR",
+                    "availability": "https://schema.org/InStock"
+                  }
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Product",
+                  "name": "Marcapáginas Magnético de Autor",
+                  "description": "Marcapáginas con imanes de neodimio que no dañan el papel.",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "3.50",
+                    "priceCurrency": "EUR",
+                    "availability": "https://schema.org/InStock"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://martenscrap.com/#website",
+          "url": "https://martenscrap.com/",
+          "name": "Martenscrap",
+          "description": "Marcapáginas magnéticos, papelería Legami y artefactos 3D de colección artesanales",
+          "publisher": { "@id": "https://martenscrap.com/#organization" }
+        }
+      ]
+    }
+    </script>
+    <style>
+      body {
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      }
+      h1, h2, h3, h4, .font-display {
+        font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
