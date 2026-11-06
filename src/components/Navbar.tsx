@@ -409,21 +409,21 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Action Icons */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             {/* Search */}
             <button
               onClick={onOpenSearch}
-              className="p-2.5 rounded-2xl bg-white/70 hover:bg-white text-stone-700 border border-stone-200/60 shadow-xs transition-all hover:scale-105 cursor-pointer"
+              className="p-2 sm:p-2.5 rounded-2xl bg-white/70 hover:bg-white text-stone-700 border border-stone-200/60 shadow-xs transition-all hover:scale-105 active:scale-95 cursor-pointer"
               aria-label={t.searchPlaceholder}
               title={`${t.searchPlaceholder} (Ctrl+K)`}
             >
-              <Search className="w-4 h-4" />
+              <Search className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
             </button>
 
-            {/* User Account / Auth Modal Trigger */}
+            {/* User Account / Auth Modal Trigger (Desktop & Tablet) */}
             <button
               onClick={onOpenAuth}
-              className={`p-2.5 rounded-2xl border transition-all cursor-pointer flex items-center gap-1.5 ${
+              className={`p-2 sm:p-2.5 rounded-2xl border transition-all cursor-pointer hidden md:flex items-center gap-1.5 ${
                 currentUser
                   ? 'bg-purple-50 text-[#9333EA] border-purple-200 font-bold text-xs'
                   : 'bg-white/70 hover:bg-white text-stone-700 border border-stone-200/60 shadow-xs'
@@ -433,7 +433,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <User className="w-4 h-4" />
               {currentUser && (
-                <span className="hidden sm:inline text-xs font-bold max-w-[80px] truncate">
+                <span className="text-xs font-bold max-w-[80px] truncate">
                   {currentUser.name.split(' ')[0]}
                 </span>
               )}
@@ -442,7 +442,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Wishlist Button - Interactive & opens Drawer */}
             <button
               onClick={onOpenWishlist}
-              className={`p-2.5 rounded-2xl border transition-all cursor-pointer flex items-center gap-1.5 ${
+              className={`p-2 sm:p-2.5 rounded-2xl border transition-all cursor-pointer flex items-center gap-1.5 ${
                 wishlistCount > 0
                   ? 'bg-red-50 text-red-500 border-red-200 hover:bg-red-100 shadow-xs'
                   : 'bg-white/70 hover:bg-white text-stone-400 border border-stone-200/60'
@@ -450,16 +450,16 @@ export const Navbar: React.FC<NavbarProps> = ({
               aria-label={`${t.wishlist} (${wishlistCount})`}
               title={`${t.wishlist} (${wishlistCount})`}
             >
-              <Heart className={`w-4 h-4 ${wishlistCount > 0 ? 'fill-current' : ''}`} />
+              <Heart className={`w-4 h-4 sm:w-4.5 sm:h-4.5 ${wishlistCount > 0 ? 'fill-current text-red-500' : ''}`} />
               {wishlistCount > 0 && (
-                <span className="text-xs font-bold">{wishlistCount}</span>
+                <span className="text-xs font-bold text-red-600">{wishlistCount}</span>
               )}
             </button>
 
-            {/* Audio Toggle */}
+            {/* Audio Toggle (Desktop) */}
             <button
               onClick={onToggleSound}
-              className={`p-2.5 rounded-2xl border transition-all cursor-pointer ${
+              className={`p-2.5 rounded-2xl border transition-all cursor-pointer hidden sm:flex ${
                 soundEnabled
                   ? 'bg-purple-50 text-[#9333EA] border-purple-200'
                   : 'bg-white/70 text-stone-400 border-stone-200/60'
@@ -470,10 +470,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
             </button>
 
-            {/* Candlelight / Light Mode */}
+            {/* Candlelight / Light Mode (Desktop) */}
             <button
               onClick={onToggleTheme}
-              className="p-2.5 rounded-2xl bg-white/70 hover:bg-white text-stone-700 border border-stone-200/60 shadow-xs transition-all hover:scale-105 cursor-pointer"
+              className="p-2.5 rounded-2xl bg-white/70 hover:bg-white text-stone-700 border border-stone-200/60 shadow-xs transition-all hover:scale-105 cursor-pointer hidden sm:flex"
               aria-label={currentTheme === 'candlelight' ? 'Modo Día' : 'Modo Lectura a la Luz de las Velas'}
               title={currentTheme === 'candlelight' ? 'Modo Día' : 'Modo Lectura a la Luz de las Velas'}
             >
@@ -487,74 +487,199 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Cart Trigger */}
             <button
               onClick={onOpenCart}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-[#1C1917] text-white hover:bg-[#9333EA] transition-all shadow-md hover:scale-105 active:scale-95 cursor-pointer"
+              className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl bg-[#1C1917] text-white hover:bg-[#9333EA] transition-all shadow-md hover:scale-105 active:scale-95 cursor-pointer ml-1"
               aria-label={`${t.cart} (${cartCount})`}
             >
               <ShoppingBag className="w-4 h-4" />
-              <span className="font-bold text-xs">{cartCount}</span>
+              <span className="font-bold text-xs sm:text-sm">{cartCount}</span>
             </button>
           </div>
         </div>
 
-        {/* Mobile Slide-down Menu */}
+        {/* Enhanced Touch-Friendly Mobile Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden mt-4 pt-4 border-t border-stone-200/80 space-y-3">
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                onClick={() => { onNavigateSection('inicio'); setMobileMenuOpen(false); }}
-                className="p-2 text-center text-xs font-bold rounded-xl bg-white/60 text-stone-800"
-              >
-                {t.home}
-              </button>
+          <div className="lg:hidden mt-4 pt-4 border-t border-stone-200/80 space-y-4 max-h-[80vh] overflow-y-auto pb-6 pr-1 animate-in fade-in slide-in-from-top-4 duration-200">
+            
+            {/* User Account Tile */}
+            <div 
+              onClick={() => { onOpenAuth(); setMobileMenuOpen(false); }}
+              className="p-3.5 rounded-2xl bg-stone-100 hover:bg-stone-200 border border-stone-200 flex items-center justify-between cursor-pointer active:scale-98 transition-all"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-purple-100 text-[#9333EA] flex items-center justify-center font-bold">
+                  <User className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-sm font-black text-stone-900 block">
+                    {currentUser ? currentUser.name : t.myAccount}
+                  </span>
+                  <span className="text-xs text-stone-500">
+                    {currentUser ? currentUser.email : 'Inicia sesión para ver tus pedidos y favoritos'}
+                  </span>
+                </div>
+              </div>
+              <ChevronDown className="w-4 h-4 text-stone-400 -rotate-90" />
+            </div>
+
+            {/* Core Feature Tiles (Big touch buttons) */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
               <button
                 onClick={() => { onOpenBoxBuilder(); setMobileMenuOpen(false); }}
-                className="p-2 text-center text-xs font-bold rounded-xl bg-purple-100 text-[#9333EA]"
+                className="p-3.5 rounded-2xl bg-purple-50 border border-purple-200 text-left flex items-center gap-3 active:scale-98 transition-all cursor-pointer shadow-xs"
               >
-                🎁 {t.buildBox}
+                <div className="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center shrink-0">
+                  <Gift className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-sm font-black text-purple-900 block leading-tight">
+                    {t.buildBox}
+                  </span>
+                  <span className="text-[11px] text-purple-700">Caja personalizada con lacre</span>
+                </div>
               </button>
+
               <button
                 onClick={() => { onOpen3DStudio(); setMobileMenuOpen(false); }}
-                className="p-2 text-center text-xs font-bold rounded-xl bg-cyan-100 text-cyan-800"
+                className="p-3.5 rounded-2xl bg-cyan-50 border border-cyan-200 text-left flex items-center gap-3 active:scale-98 transition-all cursor-pointer shadow-xs"
               >
-                🧪 {t.workflow3D}
+                <div className="w-10 h-10 rounded-xl bg-cyan-700 text-white flex items-center justify-center shrink-0">
+                  <Box className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-sm font-black text-cyan-900 block leading-tight">
+                    {t.workflow3D}
+                  </span>
+                  <span className="text-[11px] text-cyan-700">Visor y personalizador 3D</span>
+                </div>
               </button>
+
               <button
                 onClick={() => { onNavigateSection('tiendas-fisicas'); setMobileMenuOpen(false); }}
-                className="p-2 text-center text-xs font-bold rounded-xl bg-white/60 text-stone-800"
+                className="p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-left flex items-center gap-3 active:scale-98 transition-all cursor-pointer shadow-xs"
               >
-                {t.storesLink}
+                <div className="w-10 h-10 rounded-xl bg-amber-600 text-white flex items-center justify-center shrink-0">
+                  <MapPin className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-sm font-black text-amber-900 block leading-tight">
+                    {t.storesLink}
+                  </span>
+                  <span className="text-[11px] text-amber-700">Puntos de venta oficiales</span>
+                </div>
               </button>
             </div>
 
-            <div className="text-[11px] font-bold uppercase text-stone-400 pt-1">
-              Departamentos
-            </div>
-            <div className="flex flex-wrap gap-1.5">
-              {MAIN_DEPARTMENTS.map((dept) => (
-                <button
-                  key={dept}
-                  onClick={() => handleDeptClick(dept)}
-                  className="px-3 py-1.5 rounded-xl bg-white/80 text-xs font-semibold text-stone-700 border border-stone-200/60"
-                >
-                  {dept}
-                </button>
-              ))}
+            {/* Department Navigation List (Clear, readable and touch-friendly) */}
+            <div className="space-y-2 pt-2">
+              <span className="text-xs font-black uppercase tracking-wider text-stone-400 block px-1">
+                Explorar Catálogo
+              </span>
+              <div className="grid grid-cols-2 gap-2">
+                {MAIN_DEPARTMENTS.map((dept) => (
+                  <button
+                    key={dept}
+                    onClick={() => handleDeptClick(dept)}
+                    className="p-3 rounded-2xl bg-white border border-stone-200 text-left hover:border-purple-300 transition-all flex items-center justify-between shadow-xs active:scale-98 cursor-pointer"
+                  >
+                    <span className="text-xs font-bold text-stone-800">
+                      {dept === 'IMPRESIÓN 3D' && '🐉 '}
+                      {dept === 'LEGAMI' && '🌸 '}
+                      {dept === 'MARCAPÁGINAS' && '🧲 '}
+                      {dept === 'PAPELERÍA' && '📖 '}
+                      {dept === 'COMPLEMENTOS' && '👜 '}
+                      {dept === 'OUTLET' && '🏷️ '}
+                      {dept}
+                    </span>
+                    <ChevronDown className="w-3.5 h-3.5 text-stone-400 -rotate-90" />
+                  </button>
+                ))}
+              </div>
             </div>
 
-            <div className="text-[11px] font-bold uppercase text-stone-400 pt-1">
-              Fandoms
+            {/* Fandoms Grid */}
+            <div className="space-y-2 pt-2">
+              <span className="text-xs font-black uppercase tracking-wider text-stone-400 block px-1">
+                Tus Fandoms Favoritos
+              </span>
+              <div className="flex flex-wrap gap-1.5">
+                {FANDOM_CATEGORIES.map((fandom) => (
+                  <button
+                    key={fandom}
+                    onClick={() => handleFandomClick(fandom)}
+                    className="px-3 py-2 rounded-xl bg-white border border-stone-200 text-xs font-bold text-stone-700 hover:text-purple-600 hover:border-purple-200 transition-all active:scale-95 cursor-pointer shadow-2xs"
+                  >
+                    {fandom}
+                  </button>
+                ))}
+              </div>
             </div>
-            <div className="flex flex-wrap gap-1.5 pb-2">
-              {FANDOM_CATEGORIES.map((fandom) => (
+
+            {/* Mobile Settings Row: Theme, Sound & Language */}
+            <div className="pt-3 border-t border-stone-200 grid grid-cols-3 gap-2">
+              <button
+                onClick={onToggleTheme}
+                className="p-2.5 rounded-xl bg-white border border-stone-200 flex flex-col items-center justify-center gap-1 text-center active:scale-95 transition-all"
+              >
+                {currentTheme === 'candlelight' ? (
+                  <Sun className="w-4 h-4 text-amber-500" />
+                ) : (
+                  <Flame className="w-4 h-4 text-amber-600" />
+                )}
+                <span className="text-[10px] font-bold text-stone-700">
+                  {currentTheme === 'candlelight' ? 'Modo Día' : 'Modo Velas'}
+                </span>
+              </button>
+
+              <button
+                onClick={onToggleSound}
+                className="p-2.5 rounded-xl bg-white border border-stone-200 flex flex-col items-center justify-center gap-1 text-center active:scale-95 transition-all"
+              >
+                {soundEnabled ? (
+                  <Volume2 className="w-4 h-4 text-[#9333EA]" />
+                ) : (
+                  <VolumeX className="w-4 h-4 text-stone-400" />
+                )}
+                <span className="text-[10px] font-bold text-stone-700">
+                  {soundEnabled ? 'Sonido On' : 'Sonido Off'}
+                </span>
+              </button>
+
+              <div className="relative">
                 <button
-                  key={fandom}
-                  onClick={() => handleFandomClick(fandom)}
-                  className="px-3 py-1.5 rounded-xl bg-white/80 text-xs font-semibold text-stone-700 border border-stone-200/60"
+                  onClick={() => setIsLangOpen(!isLangOpen)}
+                  className="w-full h-full p-2.5 rounded-xl bg-white border border-stone-200 flex flex-col items-center justify-center gap-1 text-center active:scale-95 transition-all"
                 >
-                  {fandom}
+                  <span className="text-base leading-none">{currentLangObj.flag}</span>
+                  <span className="text-[10px] font-bold text-stone-700 uppercase">
+                    {currentLangObj.code}
+                  </span>
                 </button>
-              ))}
+              </div>
             </div>
+
+            {/* Language Selection List if open in mobile */}
+            {isLangOpen && (
+              <div className="grid grid-cols-2 gap-2 p-2 bg-stone-100 rounded-2xl border border-stone-200">
+                {LANGUAGES.map((item) => (
+                  <button
+                    key={item.code}
+                    onClick={() => {
+                      onSelectLanguage(item.code);
+                      setIsLangOpen(false);
+                    }}
+                    className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-all ${
+                      language === item.code
+                        ? 'bg-[#9333EA] text-white shadow-xs'
+                        : 'bg-white text-stone-800 border border-stone-200'
+                    }`}
+                  >
+                    <span>{item.flag}</span>
+                    <span>{item.label}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+
           </div>
         )}
       </nav>

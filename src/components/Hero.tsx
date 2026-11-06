@@ -37,18 +37,18 @@ export const Hero: React.FC<HeroProps> = ({
   const t = TRANSLATIONS[language] || TRANSLATIONS['es'];
 
   return (
-    <section className="relative overflow-visible pt-6 pb-16 lg:pt-8 lg:pb-20">
-      {/* Background ambient decorative blurs */}
-      <div className="absolute top-12 left-1/4 w-96 h-96 bg-purple-300/20 rounded-full blur-3xl pointer-events-none -z-10 animate-float" />
-      <div className="absolute top-1/3 right-10 w-96 h-96 bg-amber-300/20 rounded-full blur-3xl pointer-events-none -z-10 animate-float-delayed" />
+    <section className="relative overflow-hidden w-full max-w-full pt-4 pb-12 sm:pt-6 sm:pb-16 lg:pt-8 lg:pb-20">
+      {/* Background ambient decorative blurs (constrained inside container) */}
+      <div className="absolute top-12 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-purple-300/20 rounded-full blur-3xl pointer-events-none -z-10 animate-float" />
+      <div className="absolute top-1/3 right-10 w-72 sm:w-96 h-72 sm:h-96 bg-amber-300/20 rounded-full blur-3xl pointer-events-none -z-10 animate-float-delayed" />
 
-      <div className="max-w-[1400px] mx-auto px-2 sm:px-4 lg:px-8 overflow-visible">
+      <div className="max-w-[1400px] mx-auto px-2 sm:px-4 lg:px-8 w-full max-w-full overflow-hidden">
         
         {/* 1. Prominent Brand Signature Intro Animation & Permanent Centered Floating Logo */}
         <BrandIntroAnimation />
 
         {/* 2. BARAJA DESPLEGABLE JUSTO DESPUÉS DEL TÍTULO Y LOGOTIPO MARTENSCRAP */}
-        <div className="my-2 sm:my-4 w-full overflow-visible">
+        <div className="my-2 sm:my-4 w-full max-w-full overflow-hidden">
           <FeaturedPromotionsDeck
             onSelectDepartment={onSelectDepartment}
             onSelectFandom={onSelectFandom}

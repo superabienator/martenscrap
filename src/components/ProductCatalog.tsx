@@ -109,29 +109,29 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
         </div>
 
         {/* Secondary Subcategories & Fandoms Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-white border border-stone-200 shadow-xs">
+        <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4 p-3 sm:p-4 rounded-2xl bg-white border border-stone-200 shadow-xs">
           
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 w-full lg:w-auto">
             <span className="text-xs font-bold text-stone-400 uppercase tracking-wider flex items-center gap-1">
               <Filter className="w-3.5 h-3.5" /> Subcategoría:
             </span>
             <select
               value={selectedSubCategory}
               onChange={(e) => onSelectSubCategory(e.target.value as SubCategory)}
-              className="text-xs font-bold text-stone-800 bg-stone-50 border border-stone-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#9333EA]"
+              className="text-xs font-bold text-stone-800 bg-stone-50 border border-stone-200 rounded-xl px-2.5 py-1.5 sm:px-3 sm:py-2 focus:outline-none focus:ring-2 focus:ring-[#9333EA]"
             >
               {currentSubList.map(sub => (
                 <option key={sub} value={sub}>{sub}</option>
               ))}
             </select>
 
-            <span className="text-xs font-bold text-stone-400 uppercase tracking-wider ml-2">
+            <span className="text-xs font-bold text-stone-400 uppercase tracking-wider ml-1 sm:ml-2">
               Fandom:
             </span>
             <select
               value={selectedFandom}
               onChange={(e) => onSelectFandom(e.target.value as FandomCategory)}
-              className="text-xs font-bold text-stone-800 bg-stone-50 border border-stone-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#9333EA]"
+              className="text-xs font-bold text-stone-800 bg-stone-50 border border-stone-200 rounded-xl px-2.5 py-1.5 sm:px-3 sm:py-2 focus:outline-none focus:ring-2 focus:ring-[#9333EA]"
             >
               {FANDOM_CATEGORIES.map(f => (
                 <option key={f} value={f}>{f}</option>
@@ -139,35 +139,37 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
             </select>
 
             {/* Quick check toggles */}
-            <label className="inline-flex items-center gap-1.5 text-xs font-semibold text-stone-700 ml-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={only3D}
-                onChange={(e) => setOnly3D(e.target.checked)}
-                className="rounded text-cyan-600 focus:ring-cyan-600"
-              />
-              🐉 Solo 3D
-            </label>
+            <div className="flex items-center gap-3 mt-1 sm:mt-0">
+              <label className="inline-flex items-center gap-1.5 text-xs font-semibold text-stone-700 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={only3D}
+                  onChange={(e) => setOnly3D(e.target.checked)}
+                  className="rounded text-cyan-600 focus:ring-cyan-600"
+                />
+                🐉 3D
+              </label>
 
-            <label className="inline-flex items-center gap-1.5 text-xs font-semibold text-stone-700 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={onlyLegami}
-                onChange={(e) => setOnlyLegami(e.target.checked)}
-                className="rounded text-rose-600 focus:ring-rose-600"
-              />
-              🌸 Solo Legami
-            </label>
+              <label className="inline-flex items-center gap-1.5 text-xs font-semibold text-stone-700 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={onlyLegami}
+                  onChange={(e) => setOnlyLegami(e.target.checked)}
+                  className="rounded text-rose-600 focus:ring-rose-600"
+                />
+                🌸 Legami
+              </label>
 
-            <label className="inline-flex items-center gap-1.5 text-xs font-semibold text-stone-700 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={onlyMagnetic}
-                onChange={(e) => setOnlyMagnetic(e.target.checked)}
-                className="rounded text-[#9333EA] focus:ring-[#9333EA]"
-              />
-              🧲 Solo imán
-            </label>
+              <label className="inline-flex items-center gap-1.5 text-xs font-semibold text-stone-700 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={onlyMagnetic}
+                  onChange={(e) => setOnlyMagnetic(e.target.checked)}
+                  className="rounded text-[#9333EA] focus:ring-[#9333EA]"
+                />
+                🧲 Imán
+              </label>
+            </div>
           </div>
 
           {/* Sort By Dropdown */}
@@ -176,20 +178,20 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="text-xs font-bold text-stone-800 bg-stone-50 border border-stone-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#9333EA]"
+              className="text-xs font-bold text-stone-800 bg-stone-50 border border-stone-200 rounded-xl px-2.5 py-1.5 sm:px-3 sm:py-2 focus:outline-none focus:ring-2 focus:ring-[#9333EA]"
             >
               <option value="featured">Destacados</option>
-              <option value="price-asc">Precio: de menor a mayor</option>
-              <option value="price-desc">Precio: de mayor a menor</option>
+              <option value="price-asc">Precio: menor a mayor</option>
+              <option value="price-desc">Precio: mayor a menor</option>
               <option value="rating">Mejor valorados ★</option>
             </select>
           </div>
 
         </div>
 
-        {/* Product Grid */}
+        {/* Product Grid: 2 columns on mobile, 3 on md, 4 on lg */}
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-6">
             {filteredProducts.map((product) => (
               <ProductCard
                 key={product.id}

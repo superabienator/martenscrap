@@ -56,37 +56,38 @@ export const SandFogCanvas: React.FC<SandFogCanvasProps> = ({ currentTheme = 'li
       '249, 115, 22'   // Coral #F97316
     ];
 
-    // 1. Visible crisp Grain / Stardust Particles (140 particles)
-    const grainCount = 140;
+    // Responsive particle count: lightweight on mobile to ensure solid 60 FPS
+    const isMobile = width < 768;
+    const grainCount = isMobile ? 32 : 110;
     const grains: GrainParticle[] = [];
 
     for (let i = 0; i < grainCount; i++) {
       grains.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        size: Math.random() * 2.2 + 1.2, // crisp visible grains 1.2px - 3.4px
+        size: Math.random() * (isMobile ? 1.8 : 2.2) + 1.0,
         speedX: (Math.random() * 0.45 - 0.15),
         speedY: (Math.random() * 0.35 - 0.15),
         color: brandColors[i % brandColors.length],
-        baseOpacity: Math.random() * 0.45 + 0.35, // visible opacity: 0.35 - 0.80
+        baseOpacity: Math.random() * 0.4 + 0.3,
         pulseSpeed: Math.random() * 0.035 + 0.01,
         angle: Math.random() * Math.PI * 2
       });
     }
 
-    // 2. Soft atmospheric ambient clouds (16 clouds)
-    const cloudCount = 16;
+    // Atmospheric ambient clouds (reduced on mobile for zero GPU lag)
+    const cloudCount = isMobile ? 4 : 12;
     const clouds: FogCloud[] = [];
 
     for (let i = 0; i < cloudCount; i++) {
       clouds.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        size: Math.random() * 90 + 50,
+        size: Math.random() * (isMobile ? 60 : 90) + (isMobile ? 35 : 50),
         speedX: (Math.random() * 0.25 - 0.08),
         speedY: (Math.random() * 0.2 - 0.1),
         color: brandColors[i % brandColors.length],
-        opacity: Math.random() * 0.04 + 0.015
+        opacity: Math.random() * 0.03 + 0.01
       });
     }
 

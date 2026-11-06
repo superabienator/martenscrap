@@ -334,7 +334,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col transition-colors duration-300 relative">
+    <div className="min-h-screen flex flex-col transition-colors duration-300 relative w-full max-w-full overflow-x-hidden">
       
       {/* 1. Sand Fog Ethereal Canvas Background */}
       <SandFogCanvas currentTheme={currentTheme} />
@@ -366,7 +366,7 @@ export const App: React.FC = () => {
       />
 
       {/* 4. Main Content Sections */}
-      <main className="flex-1">
+      <main className="flex-1 w-full max-w-full overflow-x-hidden">
         {/* Hero Section: Logo Intro -> Baraja Desplegable -> 3D WebGL Lab */}
         <Hero
           onExplore={() => scrollToSection('catalogo')}

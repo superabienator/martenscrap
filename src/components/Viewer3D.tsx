@@ -55,6 +55,7 @@ export const Viewer3D: React.FC<Viewer3DProps> = ({
     if (!container) return;
 
     // SCENE & CAMERA - Centered at (0, 0, 0)
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     const width = container.clientWidth;
     const height = container.clientHeight || 450;
     const scene = new THREE.Scene();
@@ -65,18 +66,26 @@ export const Viewer3D: React.FC<Viewer3DProps> = ({
     camera.lookAt(0, 0, 0);
     cameraRef.current = camera;
 
-    // RENDERER
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+    // RENDERER (Optimized for smooth 60 FPS on mobile GPUs)
+    const renderer = new THREE.WebGLRenderer({ 
+      antialias: !isMobile, 
+      alpha: true, 
+      powerPreference: 'high-performance' 
+    });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.type = isMobile ? THREE.BasicShadowMap : THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.15;
     rendererRef.current = renderer;
 
+    const domElement = renderer.domElement;
+    domElement.style.touchAction = 'none'; // CRUCIAL: prevent page scroll while rotating/zooming 3D canvas
+    domElement.style.outline = 'none';
+
     container.innerHTML = '';
-    container.appendChild(renderer.domElement);
+    container.appendChild(domElement);
 
     // LIGHTING
     const ambientLight = new THREE.AmbientLight(
@@ -91,6 +100,8 @@ export const Viewer3D: React.FC<Viewer3DProps> = ({
     );
     dirLight.position.set(3, 4, 4);
     dirLight.castShadow = true;
+    dirLight.shadow.mapSize.set(isMobile ? 512 : 1024, isMobile ? 512 : 1024);
+    dirLight.shadow.bias = -0.0005;
     scene.add(dirLight);
 
     const rimLight = new THREE.DirectionalLight(0x9333ea, 1.6);
@@ -138,14 +149,16 @@ export const Viewer3D: React.FC<Viewer3DProps> = ({
       cameraRef.current.position.z = Math.min(Math.max(cameraRef.current.position.z + zoomDelta, 1.8), 6.5);
     };
 
-    // TOUCH ORBIT & PINCH ZOOM
+    // TOUCH ORBIT & PINCH ZOOM (Strictly locked to canvas: no page scrolling)
     let initialTouchDist = 0;
     const onTouchStart = (e: TouchEvent) => {
+      if (e.cancelable) e.preventDefault();
       if (e.touches.length === 1) {
         isDragging = true;
         prevMouseX = e.touches[0].clientX;
         prevMouseY = e.touches[0].clientY;
       } else if (e.touches.length === 2) {
+        isDragging = false;
         initialTouchDist = Math.hypot(
           e.touches[0].clientX - e.touches[1].clientX,
           e.touches[0].clientY - e.touches[1].clientY
@@ -154,6 +167,7 @@ export const Viewer3D: React.FC<Viewer3DProps> = ({
     };
 
     const onTouchMove = (e: TouchEvent) => {
+      if (e.cancelable) e.preventDefault();
       if (e.touches.length === 1 && isDragging && mainGroup) {
         const deltaX = e.touches[0].clientX - prevMouseX;
         const deltaY = e.touches[0].clientY - prevMouseY;
@@ -167,19 +181,19 @@ export const Viewer3D: React.FC<Viewer3DProps> = ({
           e.touches[0].clientY - e.touches[1].clientY
         );
         const diff = initialTouchDist - currentDist;
-        cameraRef.current.position.z = Math.min(Math.max(cameraRef.current.position.z + diff * 0.01, 1.8), 6.5);
+        cameraRef.current.position.z = Math.min(Math.max(cameraRef.current.position.z + diff * 0.008, 1.8), 6.5);
         initialTouchDist = currentDist;
       }
     };
 
-    const domElement = renderer.domElement;
     domElement.addEventListener('mousedown', onMouseDown);
     domElement.addEventListener('wheel', onWheel, { passive: false });
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mouseup', onMouseUp);
-    domElement.addEventListener('touchstart', onTouchStart, { passive: true });
-    window.addEventListener('touchmove', onTouchMove, { passive: true });
-    window.addEventListener('touchend', onMouseUp);
+    domElement.addEventListener('touchstart', onTouchStart, { passive: false });
+    domElement.addEventListener('touchmove', onTouchMove, { passive: false });
+    domElement.addEventListener('touchend', onMouseUp, { passive: false });
+    domElement.addEventListener('touchcancel', onMouseUp, { passive: false });
 
     const handleResize = () => {
       if (!container || !camera || !renderer) return;
@@ -229,8 +243,9 @@ export const Viewer3D: React.FC<Viewer3DProps> = ({
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseup', onMouseUp);
       domElement.removeEventListener('touchstart', onTouchStart);
-      window.removeEventListener('touchmove', onTouchMove);
-      window.removeEventListener('touchend', onMouseUp);
+      domElement.removeEventListener('touchmove', onTouchMove);
+      domElement.removeEventListener('touchend', onMouseUp);
+      domElement.removeEventListener('touchcancel', onMouseUp);
       window.removeEventListener('resize', handleResize);
 
       // Deep GPU memory disposal [ARCH-01]
@@ -604,10 +619,10 @@ export const Viewer3D: React.FC<Viewer3DProps> = ({
   return (
     <div 
       data-cursor="3d"
-      className="living-border relative w-full rounded-3xl overflow-hidden bg-gradient-to-br from-[#F5F2EB] to-[#ECE7DD] border border-[#E4DEC9] shadow-[0_20px_50px_rgba(0,0,0,0.06)] p-6"
+      className="living-border relative w-full rounded-3xl overflow-hidden bg-gradient-to-br from-[#F5F2EB] to-[#ECE7DD] border border-[#E4DEC9] shadow-[0_20px_50px_rgba(0,0,0,0.06)] p-3.5 sm:p-6"
     >
       {/* Header controls bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-4 z-10 relative">
+      <div className="flex flex-wrap items-center justify-between gap-2.5 mb-3 sm:mb-4 z-10 relative">
         <div className="flex items-center gap-2">
           <div className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-ping" />
           <span className="text-xs font-bold uppercase tracking-widest text-[#78716C]">
@@ -615,11 +630,11 @@ export const Viewer3D: React.FC<Viewer3DProps> = ({
           </span>
         </div>
 
-        {/* Object Selector */}
-        <div className="flex flex-wrap items-center gap-1.5 p-1 bg-white/70 backdrop-blur-md rounded-2xl border border-white/60 shadow-xs">
+        {/* Object Selector (Horizontal scroll on mobile, no clumsy wrapping) */}
+        <div className="flex items-center gap-1.5 p-1 bg-white/70 backdrop-blur-md rounded-2xl border border-white/60 shadow-xs overflow-x-auto max-w-full scrollbar-none">
           <button
             onClick={() => { setModelType('bookmark'); setIsOpen(false); targetAngleRef.current = 0; }}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+            className={`shrink-0 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               modelType === 'bookmark'
                 ? 'bg-[#1C1917] text-white shadow-xs'
                 : 'text-[#57534E] hover:bg-neutral-100'
@@ -629,7 +644,7 @@ export const Viewer3D: React.FC<Viewer3DProps> = ({
           </button>
           <button
             onClick={() => setModelType('dragon')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+            className={`shrink-0 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               modelType === 'dragon'
                 ? 'bg-[#1C1917] text-white shadow-xs'
                 : 'text-[#57534E] hover:bg-neutral-100'
@@ -639,7 +654,7 @@ export const Viewer3D: React.FC<Viewer3DProps> = ({
           </button>
           <button
             onClick={() => setModelType('clicker')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+            className={`shrink-0 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               modelType === 'clicker'
                 ? 'bg-[#1C1917] text-white shadow-xs'
                 : 'text-[#57534E] hover:bg-neutral-100'
@@ -649,7 +664,7 @@ export const Viewer3D: React.FC<Viewer3DProps> = ({
           </button>
           <button
             onClick={() => setModelType('standee')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+            className={`shrink-0 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               modelType === 'standee'
                 ? 'bg-[#1C1917] text-white shadow-xs'
                 : 'text-[#57534E] hover:bg-neutral-100'
@@ -659,7 +674,7 @@ export const Viewer3D: React.FC<Viewer3DProps> = ({
           </button>
           <button
             onClick={() => setModelType('tracker')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+            className={`shrink-0 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               modelType === 'tracker'
                 ? 'bg-[#1C1917] text-white shadow-xs'
                 : 'text-[#57534E] hover:bg-neutral-100'
@@ -673,12 +688,13 @@ export const Viewer3D: React.FC<Viewer3DProps> = ({
       {/* 3D Canvas Container */}
       <div
         ref={mountRef}
-        className="w-full h-[380px] sm:h-[420px] rounded-2xl cursor-grab active:cursor-grabbing relative flex items-center justify-center select-none"
+        style={{ touchAction: 'none' }}
+        className="w-full h-[340px] sm:h-[420px] rounded-2xl cursor-grab active:cursor-grabbing relative flex items-center justify-center select-none"
       >
         {/* Floating Controls Overlay: Rotate + Zoom Helper */}
-        <div className="absolute bottom-4 left-4 pointer-events-none text-[11px] text-[#A8A29E] flex items-center gap-1.5 bg-white/70 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/60">
-          <RotateCw className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: '6s' }} />
-          <span>Arrastra 360° • Usa la rueda para acercar/alejar</span>
+        <div className="absolute bottom-3 left-3 pointer-events-none text-[10px] sm:text-[11px] text-[#78716C] flex items-center gap-1.5 bg-white/80 backdrop-blur-md px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full border border-white/60 shadow-xs">
+          <RotateCw className="w-3 h-3 sm:w-3.5 sm:h-3.5 animate-spin" style={{ animationDuration: '6s' }} />
+          <span>Gira 360° • Pellizca para zoom</span>
         </div>
 
         {/* On-screen Zoom Buttons */}

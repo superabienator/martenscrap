@@ -6,6 +6,35 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 
 ---
 
+## [1.2.4] - 2026-11-06
+
+### 📱 Optimización Móvil Integral (Responsive UX / UI)
+- **Malla de productos en 2 columnas en móviles (`ProductCatalog` & `ProductCard`)**:
+  - Sustituida la cuadrícula vertical unicolumna (`grid-cols-1`) por una distribución ágil de 2 columnas (`grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4`).
+  - Tarjetas de producto adaptadas (`ProductCard`): paddings compactos (`p-2.5 sm:p-4`), insignias reducidas, botón de compra rápido optimizado y alturas equilibradas para ver de 4 a 6 artículos cómodamente en cada scroll de pantalla.
+- **Menú y cabecera táctil rediseñados (`Navbar`)**:
+  - Panel móvil desplegable ampliado y táctil (objetivos mínimos de toque de 48px según directrices Apple/Google).
+  - Bloque directo de bienvenida/cuenta de usuario y tarjetas destacadas de acceso rápido (*Arma tu Caja Regalo*, *Laboratorio 3D* y *Puntos de Venta*).
+  - Grid de departamentos y píldoras de fandoms con tipografía legible y cómoda.
+  - Ajustes rápidos integrados (Modo Velas / Día, Sonido táctil y selector de idioma con banderas grandes).
+  - Despejada la botonera superior en móvil: acceso directo a Búsqueda, Favoritos con contador y Carrito sin apelotonamiento.
+- **Eliminación del desbordamiento horizontal y espacios en blanco**:
+  - Bloqueo estricto de overflow en `html`, `body`, `#root` y contenedores principales (`overflow-x-hidden w-full max-w-full`).
+  - Encapsuladas las esferas de desenfoque ambiental y la animación de la pluma/mano de cabecera (`BrandIntroAnimation`) para evitar que sobresalgan del ancho visible del dispositivo.
+  - Carrusel horizontal de la baraja móvil (`FeaturedPromotionsDeck`) encuadrado de extremo a extremo sin márgenes fantasmas.
+
+### ⚡ Rendimiento & Fluidez (60 FPS en Móviles)
+- **Aislamiento táctil en el Visor 3D (`Viewer3D`)**:
+  - Asignado `touch-action: none` directamente sobre el canvas WebGL y el contenedor de montaje.
+  - Eventos táctiles no pasivos (`passive: false`) con `e.preventDefault()`, impidiendo que el scroll vertical de la página web interfiera o compita al rotar en 360° con un dedo o pellizcar para hacer zoom con dos dedos.
+  - Optimización GPU para móviles: resolución de sombras adaptada a 512×512, mapa de sombras básico y limitación del ratio de píxeles (`Math.min(devicePixelRatio, 1.5)`) para eliminar tirones al orbitar.
+  - Selector de modelos 3D con desplazamiento horizontal suave (`overflow-x-auto`) sin saltos de línea antiestéticos.
+- **Eliminación de tirones en la animación de cabecera (`BrandIntroAnimation` & CSS)**:
+  - Sustituidas las animaciones basadas en propiedades lentas de maquetación (`left`, `top`, `filter: blur(...)`) por transformaciones por aceleración hardware (`transform: translate3d(...) scale(...)`, `will-change: transform`).
+  - Reducción dinámica de partículas y niebla en dispositivos móviles en `SandFogCanvas` (de 140 a 32 partículas y de 16 a 4 nubes), liberando drásticamente el consumo de GPU.
+
+---
+
 ## [1.2.3] - 2026-11-06
 
 ### 🎨 Identidad de Marca & Favicon Oficial

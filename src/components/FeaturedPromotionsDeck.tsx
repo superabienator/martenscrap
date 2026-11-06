@@ -218,13 +218,13 @@ export const FeaturedPromotionsDeck: React.FC<FeaturedPromotionsDeckProps> = ({
     <section 
       id="promociones-destacadas"
       aria-label="Eventos, novedades de temporada y colecciones del taller"
-      className={compactPadding ? "relative py-4 lg:py-6 overflow-visible w-full" : "relative py-12 lg:py-16 overflow-visible w-full"}
+      className={compactPadding ? "relative py-4 lg:py-6 overflow-hidden w-full max-w-full" : "relative py-12 lg:py-16 overflow-hidden w-full max-w-full"}
     >
-      {/* Decorative ambient gradients */}
-      <div className="absolute top-1/2 left-1/3 -translate-y-1/2 -translate-x-1/2 w-[550px] h-[550px] bg-purple-400/10 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[450px] h-[450px] bg-amber-400/10 rounded-full blur-3xl pointer-events-none -z-10" />
+      {/* Decorative ambient gradients (constrained inside section) */}
+      <div className="absolute top-1/2 left-1/3 -translate-y-1/2 -translate-x-1/2 w-[350px] sm:w-[550px] h-[350px] sm:h-[550px] bg-purple-400/10 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[300px] sm:w-[450px] h-[300px] sm:h-[450px] bg-amber-400/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
-      <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 overflow-visible">
+      <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 overflow-hidden">
         
         {/* Section Header */}
         <div className={`text-center max-w-3xl mx-auto space-y-2.5 ${compactPadding ? 'mb-6 lg:mb-8' : 'mb-10 lg:mb-14'}`}>
