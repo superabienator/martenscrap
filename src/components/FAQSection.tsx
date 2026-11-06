@@ -58,7 +58,8 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
   faqs
 }) => {
   const currentFaqs = faqs || DEFAULT_FAQS;
-  const [openId, setOpenId] = useState<string | null>(currentFaqs[0]?.id || null);
+  // Retraídas por defecto para no alargar la página; se despliegan al hacer clic
+  const [openId, setOpenId] = useState<string | null>(null);
 
   const toggleItem = (id: string) => {
     setOpenId(prev => (prev === id ? null : id));

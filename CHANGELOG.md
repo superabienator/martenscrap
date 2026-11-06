@@ -6,6 +6,28 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 
 ---
 
+## [1.2.6] - 2026-11-06
+
+### 📐 Optimización de Longitud y Compactación Visual de la Página
+- **Catálogo de Artículos Paginado (`ProductCatalog`)**:
+  - Limitada la carga inicial a 8 artículos (exactamente 2 filas en pantallas de escritorio o 4 filas en móvil), reduciendo la longitud de la página en más de un 60%.
+  - Añadido botón interactivo y ergonómico *"Cargar más artículos (+8)"* con indicador visual de progreso (`Mostrando X de Y artículos`) y mensaje al explorar el catálogo completo.
+- **Cilindro Giratorio 3D de Puntos de Venta (`StoreLocator`)**:
+  - Sustituida la cuadrícula vertical de 10 tarjetas por un elegante **cilindro giratorio tridimensional** en una sola línea.
+  - Implementados los 3 modos de interacción simultáneos solicitados:
+    1. **Autodesplazamiento (Autoplay)**: Giro automático suave cada 3,4 segundos que se pausa al interactuar o pasar el cursor.
+    2. **Arrastre interactivo y giro táctil (Drag & Swipe)**: Capacidad de girar el cilindro arrastrando con el ratón o deslizando con el dedo en pantallas táctiles con inercia.
+    3. **Flechas de control directas**: Botones laterales (*anterior/siguiente*) con dianas táctiles accesibles.
+    4. Perspectiva espacial `perspective: 1100px`, curvatura angular `rotateY(-18deg / 18deg)`, escalado dinámico en profundidad y selector de dots.
+- **Preguntas Frecuentes Retraídas por Defecto (`FAQSection`)**:
+  - Modificado el estado inicial para que todas las preguntas frecuentes aparezcan retraídas (cerradas) al cargar la página, ahorrando espacio vertical y permitiendo al usuario abrir solo la respuesta de su interés.
+- **Corrección Tipográfica y Erradicación de Cortes (`ContactSection` & `index.css`)**:
+  - Corregido el solapamiento de la letra "g" en *"¿Tienes una duda o quieres un encargo personalizado?"*.
+  - Añadido espaciado seguro y margen vertical en el encabezado.
+  - Reforzada la clase `.text-iridescent` con `padding-bottom: 0.16em` y `margin-bottom: -0.16em` para evitar que los caracteres con trazos descendentes (`g`, `y`, `p`, `q`, `j`) sean recortados por el degradado o solapados por bloques contiguos.
+
+---
+
 ## [1.2.5] - 2026-11-06
 
 ### 📱 Auditoría Senior UI/UX & Rediseño Fluido Integral (Mobile-First)

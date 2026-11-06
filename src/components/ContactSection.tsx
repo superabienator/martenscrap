@@ -47,11 +47,11 @@ export const ContactSection: React.FC = () => {
               Estamos aquí para ayudarte
             </div>
 
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-black text-stone-900 tracking-tight">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-black text-stone-900 tracking-tight leading-snug sm:leading-tight pb-1.5 mb-2">
               ¿Tienes una duda o quieres un <span className="text-iridescent">encargo personalizado</span>?
             </h2>
 
-            <p className="text-sm text-stone-600 leading-relaxed">
+            <p className="text-sm text-stone-600 leading-relaxed pt-1">
               Realizamos marcapáginas y complementos personalizados para eventos, clubes de lectura, autores independientes, bodas y comuniones. Escríbenos y te responderemos en menos de 24 horas.
             </p>
 

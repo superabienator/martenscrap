@@ -1,8 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import type { Product, MainDepartment, FandomCategory, SubCategory } from '../types';
 import { MAIN_DEPARTMENTS, FANDOM_CATEGORIES, SUB_CATEGORIES } from '../data/mockData';
 import { ProductCard } from './ProductCard';
-import { Sparkles, Filter } from 'lucide-react';
+import { Sparkles, Filter, ChevronDown } from 'lucide-react';
 import { TRANSLATIONS, type Language } from '../i18n/translations';
 
 interface ProductCatalogProps {
@@ -40,6 +40,15 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
   const [onlyLegami, setOnlyLegami] = useState(false);
   const [onlyMagnetic, setOnlyMagnetic] = useState(false);
 
+  // Initial display limit: 8 items (2 desktop rows of 4 columns, or 4 compact mobile rows)
+  const INITIAL_VISIBLE_COUNT = 8;
+  const [visibleCount, setVisibleCount] = useState<number>(INITIAL_VISIBLE_COUNT);
+
+  // Reset pagination whenever user changes filters or category
+  useEffect(() => {
+    setVisibleCount(INITIAL_VISIBLE_COUNT);
+  }, [selectedDepartment, selectedSubCategory, selectedFandom, only3D, onlyLegami, onlyMagnetic, sortBy]);
+
   // Filter & sort logic
   const filteredProducts = useMemo(() => {
     return products
@@ -59,6 +68,16 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
         return 0;
       });
   }, [products, selectedDepartment, selectedSubCategory, selectedFandom, only3D, onlyLegami, onlyMagnetic, sortBy]);
+
+  const displayedProducts = useMemo(() => {
+    return filteredProducts.slice(0, visibleCount);
+  }, [filteredProducts, visibleCount]);
+
+  const hasMore = visibleCount < filteredProducts.length;
+
+  const handleLoadMore = () => {
+    setVisibleCount(prev => prev + 8);
+  };
 
   const currentSubList = SUB_CATEGORIES[selectedDepartment] || ['TODOS'];
 
@@ -191,18 +210,46 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
 
         {/* Product Grid: 2 columns on mobile, 3 on md, 4 on lg */}
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-6">
-            {filteredProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onQuickView={onQuickView}
-                onAddToCart={onAddToCart}
-                onToggleWishlist={onToggleWishlist}
-                isWishlisted={wishlistIds.includes(product.id)}
-              />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-6">
+              {displayedProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onQuickView={onQuickView}
+                  onAddToCart={onAddToCart}
+                  onToggleWishlist={onToggleWishlist}
+                  isWishlisted={wishlistIds.includes(product.id)}
+                />
+              ))}
+            </div>
+
+            {/* Load More Button & Pagination Info */}
+            <div className="flex flex-col items-center justify-center pt-6 sm:pt-8 border-t border-stone-200/60">
+              {hasMore ? (
+                <div className="flex flex-col items-center gap-3">
+                  <button
+                    onClick={handleLoadMore}
+                    className="group inline-flex items-center gap-2.5 px-6 sm:px-8 py-3.5 rounded-2xl bg-stone-900 hover:bg-[#9333EA] text-white text-xs sm:text-sm font-bold shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer min-h-[46px]"
+                  >
+                    <Sparkles className="w-4 h-4 text-purple-300 group-hover:rotate-12 transition-transform" />
+                    <span>Cargar más artículos</span>
+                    <span className="px-2 py-0.5 rounded-full bg-white/20 text-[10px] sm:text-[11px] font-bold">
+                      +{Math.min(8, filteredProducts.length - visibleCount)}
+                    </span>
+                    <ChevronDown className="w-4 h-4 text-white/80 group-hover:translate-y-0.5 transition-transform" />
+                  </button>
+                  <p className="text-xs font-medium text-stone-500">
+                    Mostrando <span className="font-bold text-stone-800">{displayedProducts.length}</span> de <span className="font-bold text-stone-800">{filteredProducts.length}</span> artículos
+                  </p>
+                </div>
+              ) : filteredProducts.length > INITIAL_VISIBLE_COUNT ? (
+                <p className="text-xs sm:text-sm font-semibold text-stone-400 bg-stone-100/80 px-4 py-2 rounded-full">
+                  ✓ Has explorado los {filteredProducts.length} artículos disponibles
+                </p>
+              ) : null}
+            </div>
+          </>
         ) : (
           <div className="text-center py-16 p-8 rounded-3xl bg-white border border-stone-200">
             <p className="text-base font-bold text-stone-700">
