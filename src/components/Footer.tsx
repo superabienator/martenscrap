@@ -19,11 +19,11 @@ export const Footer: React.FC<FooterProps> = ({
   };
 
   return (
-    <footer className="bg-[#141210] text-stone-300 pt-16 pb-12 border-t border-stone-800">
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 space-y-12">
+    <footer className="bg-[#141210] text-stone-300 pt-12 sm:pt-16 pb-10 sm:pb-12 border-t border-stone-800 overflow-hidden w-full max-w-full">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 space-y-10 sm:space-y-12">
         
         {/* Top Guarantee Strip */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-12 border-b border-stone-800">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 pb-8 sm:pb-12 border-b border-stone-800">
           <div className="flex items-center gap-3">
             <div className="p-3 rounded-2xl bg-stone-900 text-[#E0A96D]">
               <Sparkles className="w-5 h-5" />

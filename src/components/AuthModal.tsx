@@ -84,9 +84,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({
       role="dialog"
       aria-modal="true"
       aria-labelledby="auth-modal-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-200"
     >
-      <div className="relative w-full max-w-md rounded-3xl bg-[#FAF8F5] border border-stone-200 shadow-2xl p-6 sm:p-8 living-border overflow-hidden">
+      <div className="relative w-full max-w-md rounded-3xl bg-[#FAF8F5] border border-stone-200 shadow-2xl p-5 sm:p-8 living-border overflow-hidden">
         
         {/* Close Button */}
         <button

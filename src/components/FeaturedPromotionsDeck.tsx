@@ -448,12 +448,12 @@ export const FeaturedPromotionsDeck: React.FC<FeaturedPromotionsDeckProps> = ({
                     setActiveCardIndex(index);
                     setActiveModalFeature(item);
                   }}
-                  className={`living-border snap-center shrink-0 w-[84vw] max-w-[320px] h-[500px] rounded-3xl overflow-hidden bg-white border border-[#E7E2D9] shadow-lg transition-all cursor-pointer ${
+                  className={`living-border snap-center shrink-0 w-[86vw] max-w-[340px] h-[460px] sm:h-[490px] rounded-3xl overflow-hidden bg-white border border-[#E7E2D9] shadow-lg transition-all cursor-pointer ${
                     isActive ? 'ring-2 ring-[#9333EA]' : 'opacity-95'
                   }`}
                 >
                   {/* Card Image Container */}
-                  <div className="relative w-full h-[72%] overflow-hidden bg-stone-900">
+                  <div className="relative w-full h-[70%] overflow-hidden bg-stone-900">
                     {item.images.map((imgObj, imgIdx) => (
                       <img
                         key={imgObj.url}
@@ -496,22 +496,22 @@ export const FeaturedPromotionsDeck: React.FC<FeaturedPromotionsDeckProps> = ({
                       </div>
                     )}
 
-                    {/* Arrows */}
+                    {/* Arrows with 44px accessible touch target */}
                     {item.images.length > 1 && (
                       <div className="absolute inset-y-0 inset-x-2 flex items-center justify-between pointer-events-none z-20">
                         <button
                           onClick={(e) => handlePrevImage(e, item.id, item.images.length)}
                           aria-label="Anterior"
-                          className="p-2 rounded-full bg-black/55 text-white pointer-events-auto active:scale-90 shadow-md"
+                          className="w-11 h-11 rounded-full bg-black/60 text-white pointer-events-auto active:scale-90 shadow-md flex items-center justify-center cursor-pointer"
                         >
-                          <ChevronLeft className="w-4 h-4" />
+                          <ChevronLeft className="w-5 h-5" />
                         </button>
                         <button
                           onClick={(e) => handleNextImage(e, item.id, item.images.length)}
                           aria-label="Siguiente"
-                          className="p-2 rounded-full bg-black/55 text-white pointer-events-auto active:scale-90 shadow-md"
+                          className="w-11 h-11 rounded-full bg-black/60 text-white pointer-events-auto active:scale-90 shadow-md flex items-center justify-center cursor-pointer"
                         >
-                          <ChevronRight className="w-4 h-4" />
+                          <ChevronRight className="w-5 h-5" />
                         </button>
                       </div>
                     )}
@@ -532,22 +532,22 @@ export const FeaturedPromotionsDeck: React.FC<FeaturedPromotionsDeckProps> = ({
                   </div>
 
                   {/* Card Bottom Mobile */}
-                  <div className="h-[28%] px-4 py-3 flex flex-col justify-between bg-white border-t border-stone-100">
+                  <div className="h-[30%] px-4 py-3 flex flex-col justify-between bg-white border-t border-stone-100">
                     <p className="text-[11px] text-stone-600 line-clamp-2">
                       {item.story}
                     </p>
 
                     <div className="flex items-center justify-between gap-2 pt-1 border-t border-stone-100">
-                      <span className="text-[10px] font-bold text-purple-700 bg-purple-50 px-2 py-1 rounded-md">
+                      <span className="text-[10px] font-bold text-purple-700 bg-purple-50 px-2.5 py-1 rounded-md">
                         {item.itemCountLabel}
                       </span>
 
                       <button
                         onClick={(e) => handleCtaClick(e, item)}
-                        className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#1C1917] text-white text-xs font-bold active:scale-95 shadow-md"
+                        className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#1C1917] text-white text-xs font-bold active:scale-95 shadow-md min-h-[38px] cursor-pointer"
                       >
                         <span>{item.ctaText}</span>
-                        <ArrowRight className="w-3 h-3" />
+                        <ArrowRight className="w-3.5 h-3.5" />
                       </button>
                     </div>
                   </div>
@@ -557,14 +557,14 @@ export const FeaturedPromotionsDeck: React.FC<FeaturedPromotionsDeckProps> = ({
           </div>
 
           {/* Mobile Dot Indicators */}
-          <div className="flex items-center justify-center gap-2 pt-2">
+          <div className="flex items-center justify-center gap-1 pt-2">
             {EDITORIAL_FEATURES.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => {
                   setActiveCardIndex(idx);
                   if (scrollContainerRef.current) {
-                    const cardWidth = scrollContainerRef.current.clientWidth * 0.85;
+                    const cardWidth = scrollContainerRef.current.clientWidth * 0.86;
                     scrollContainerRef.current.scrollTo({
                       left: idx * cardWidth,
                       behavior: 'smooth'
@@ -572,12 +572,16 @@ export const FeaturedPromotionsDeck: React.FC<FeaturedPromotionsDeckProps> = ({
                   }
                 }}
                 aria-label={`Ir a novedad ${idx + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  activeCardIndex === idx
-                    ? 'w-6 bg-[#9333EA]'
-                    : 'w-2 bg-stone-300 hover:bg-stone-400'
-                }`}
-              />
+                className="p-2 flex items-center justify-center cursor-pointer min-w-[36px] min-h-[36px]"
+              >
+                <span
+                  className={`h-2 rounded-full transition-all duration-300 block ${
+                    activeCardIndex === idx
+                      ? 'w-7 bg-[#9333EA]'
+                      : 'w-2 bg-stone-300 hover:bg-stone-400'
+                  }`}
+                />
+              </button>
             ))}
           </div>
         </div>

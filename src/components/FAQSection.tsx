@@ -68,18 +68,18 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
     <section 
       id="preguntas-frecuentes"
       aria-label="Preguntas Frecuentes de la Tienda Martenscrap"
-      className="py-16 sm:py-20 bg-stone-100/60 border-t border-stone-200/80 relative overflow-hidden"
+      className="py-12 sm:py-16 lg:py-20 bg-stone-100/60 border-t border-stone-200/80 relative overflow-hidden w-full max-w-full"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center space-y-3 mb-12">
+        <div className="text-center space-y-3 mb-8 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-100/80 text-[#9333EA] text-xs font-bold border border-purple-200/60 shadow-xs">
             <HelpCircle className="w-3.5 h-3.5" />
             <span>Resolvemos tus dudas</span>
           </div>
           
-          <h2 className="font-display text-3xl sm:text-4xl font-black text-stone-900 tracking-tight">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-black text-stone-900 tracking-tight">
             Preguntas Frecuentes de la <span className="text-iridescent">Tienda</span>
           </h2>
           

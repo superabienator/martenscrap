@@ -36,32 +36,32 @@ export const LegalModal: React.FC<LegalModalProps> = ({
       role="dialog"
       aria-modal="true"
       aria-labelledby="legal-modal-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-200"
     >
-      <div className="relative w-full max-w-3xl max-h-[90vh] flex flex-col rounded-3xl bg-[#FAF8F5] border border-stone-200 shadow-2xl p-6 sm:p-8 overflow-hidden living-border">
+      <div className="relative w-full max-w-3xl max-h-[92vh] flex flex-col rounded-2xl sm:rounded-3xl bg-[#FAF8F5] border border-stone-200 shadow-2xl p-4 sm:p-8 overflow-hidden living-border">
         
         {/* Close Button */}
         <button
           onClick={onClose}
           aria-label="Cerrar ventana de información legal"
-          className="absolute top-6 right-6 p-2 rounded-full bg-white text-stone-600 hover:text-stone-900 shadow-sm transition-all hover:scale-105 z-10 cursor-pointer"
+          className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 rounded-full bg-white text-stone-600 hover:text-stone-900 shadow-sm transition-all hover:scale-105 z-10 cursor-pointer min-w-[44px] min-h-[44px] flex items-center justify-center"
         >
           <X className="w-5 h-5" aria-hidden="true" />
         </button>
 
         {/* Header */}
-        <div className="mb-6">
+        <div className="mb-4 sm:mb-6 pr-10 sm:pr-0">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-100 text-[#9333EA] text-xs font-bold mb-2">
             <Scale className="w-3.5 h-3.5" />
             Marco Normativo & Transparencia (LSSI-CE & RGPD)
           </div>
-          <h2 id="legal-modal-title" className="font-display text-2xl sm:text-3xl font-black text-stone-900">
+          <h2 id="legal-modal-title" className="font-display text-xl sm:text-3xl font-black text-stone-900 leading-snug">
             Información Legal y <span className="text-iridescent">Protección al Consumidor</span>
           </h2>
         </div>
 
         {/* Tab selection */}
-        <div className="flex flex-wrap gap-2 pb-4 border-b border-stone-200 shrink-0">
+        <div className="flex gap-2 pb-3 border-b border-stone-200 shrink-0 overflow-x-auto scrollbar-none flex-nowrap sm:flex-wrap">
           {[
             { id: 'aviso', label: 'Aviso Legal (LSSI-CE)', icon: Scale },
             { id: 'privacidad', label: 'Política de Privacidad (RGPD)', icon: ShieldCheck },

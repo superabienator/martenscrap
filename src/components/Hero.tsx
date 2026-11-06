@@ -74,8 +74,8 @@ export const Hero: React.FC<HeroProps> = ({
               </span>
             </div>
 
-            {/* H1 SEO ESTRATÉGICO CON IRIDISCENCIA VIVA */}
-            <h1 className="font-display text-4xl sm:text-5xl xl:text-6xl font-black text-[#1C1917] tracking-tight leading-[1.08]">
+            {/* H1 SEO ESTRATÉGICO CON ESCALA FLUIDA */}
+            <h1 className="font-display text-[1.75rem] sm:text-4xl md:text-5xl xl:text-6xl font-black text-[#1C1917] tracking-tight leading-[1.12]">
               {t.heroTitle1}{' '}
               <span className="text-iridescent">
                 {t.heroTitleHighlight}
@@ -83,15 +83,15 @@ export const Hero: React.FC<HeroProps> = ({
             </h1>
 
             {/* Subtítulo enfocado en conversión */}
-            <p className="text-base sm:text-lg text-stone-600 leading-relaxed font-normal max-w-xl">
+            <p className="text-sm sm:text-base md:text-lg text-stone-600 leading-relaxed font-normal max-w-xl">
               {t.heroSubtitle}
             </p>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            {/* CTAs con targets táctiles accesibles (>= 44px) */}
+            <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-3 pt-2">
               <button
                 onClick={onExplore}
-                className="px-7 py-3.5 rounded-2xl bg-[#1C1917] hover:bg-[#9333EA] text-white font-extrabold text-sm shadow-xl hover:shadow-purple-500/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 group cursor-pointer"
+                className="px-6 sm:px-7 py-3 sm:py-3.5 rounded-2xl bg-[#1C1917] hover:bg-[#9333EA] text-white font-extrabold text-sm shadow-xl hover:shadow-purple-500/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 group cursor-pointer min-h-[46px]"
               >
                 {t.exploreCatalog}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -99,7 +99,7 @@ export const Hero: React.FC<HeroProps> = ({
 
               <button
                 onClick={onOpenBoxBuilder}
-                className="px-6 py-3.5 rounded-2xl bg-white hover:bg-stone-50 text-[#9333EA] font-extrabold text-sm border-2 border-[#9333EA]/30 hover:border-[#9333EA] shadow-md transition-all flex items-center gap-2 cursor-pointer"
+                className="px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl bg-white hover:bg-stone-50 text-[#9333EA] font-extrabold text-sm border-2 border-[#9333EA]/30 hover:border-[#9333EA] shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer min-h-[46px]"
               >
                 <Gift className="w-4 h-4 text-[#9333EA]" />
                 {t.customBoxBtn}
@@ -107,17 +107,17 @@ export const Hero: React.FC<HeroProps> = ({
 
               <button
                 onClick={onOpenStudio}
-                className="px-5 py-3.5 rounded-2xl bg-cyan-50 hover:bg-cyan-100 text-cyan-800 font-extrabold text-xs border border-cyan-200 transition-all flex items-center gap-1.5 cursor-pointer"
+                className="px-4 sm:px-5 py-3 sm:py-3.5 rounded-2xl bg-cyan-50 hover:bg-cyan-100 text-cyan-800 font-extrabold text-xs sm:text-sm border border-cyan-200 transition-all flex items-center justify-center gap-1.5 cursor-pointer min-h-[46px]"
               >
                 <Box className="w-4 h-4 text-cyan-600" />
                 {t.workflow3D}
               </button>
             </div>
 
-            {/* Social Proof & Guarantees */}
-            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-stone-200/80">
-              <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-purple-100 text-[#9333EA]">
+            {/* Social Proof & Guarantees (Resiliente en mobile: 1 columna en móvil, 3 en escritorio) */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-6 border-t border-stone-200/80">
+              <div className="flex items-center gap-2.5 p-2 rounded-xl bg-white/60 sm:bg-transparent border border-stone-200/60 sm:border-0">
+                <div className="p-2 rounded-xl bg-purple-100 text-[#9333EA] shrink-0">
                   <Sparkles className="w-4 h-4" />
                 </div>
                 <div>
@@ -126,8 +126,8 @@ export const Hero: React.FC<HeroProps> = ({
                 </div>
               </div>
 
-              <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-amber-100 text-amber-700">
+              <div className="flex items-center gap-2.5 p-2 rounded-xl bg-white/60 sm:bg-transparent border border-stone-200/60 sm:border-0">
+                <div className="p-2 rounded-xl bg-amber-100 text-amber-700 shrink-0">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <div>
@@ -136,8 +136,8 @@ export const Hero: React.FC<HeroProps> = ({
                 </div>
               </div>
 
-              <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-emerald-100 text-emerald-700">
+              <div className="flex items-center gap-2.5 p-2 rounded-xl bg-white/60 sm:bg-transparent border border-stone-200/60 sm:border-0">
+                <div className="p-2 rounded-xl bg-emerald-100 text-emerald-700 shrink-0">
                   <Truck className="w-4 h-4" />
                 </div>
                 <div>

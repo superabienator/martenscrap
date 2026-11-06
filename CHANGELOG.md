@@ -6,6 +6,25 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 
 ---
 
+## [1.2.5] - 2026-11-06
+
+### 📱 Auditoría Senior UI/UX & Rediseño Fluido Integral (Mobile-First)
+- **Erradicación Total de Desbordamientos Horizontales (Overflow-X Leakage)**:
+  - Blindaje estructural en `html`, `body`, `#root`, `<main>` y en cada sección individual (`Hero`, `BrandIntroAnimation`, `FeaturedPromotionsDeck`, `ProductCatalog`, `AboutSection`, `FAQSection`, `StoreLocator`, `ContactSection`, `Footer`).
+  - Encapsulación de capas decorativas absolutas y halos difuminados con `overflow-hidden w-full max-w-full`.
+- **Tipografía Fluida y Resiliente (`clamp` / Escala Adaptativa)**:
+  - Títulos principales en `Hero`, `FeaturedPromotionsDeck`, `AboutSection`, `StoreLocator` y `ContactSection` recalibrados con tipografía adaptativa para evitar saltos de línea forzados o solapamientos en dispositivos de 320px a 420px (iPhone SE, Galaxy Fold, Pixel).
+- **Zonas Táctiles Accesibles (Tap Targets ≥ 44×44px)**:
+  - Todos los botones de acción principal, botones de cierre en modales (`LegalModal`, `ProductModal`, `CustomBoxBuilder`, `SearchModal`, `AuthModal`), flechas de navegación, puntos de carrusel y conmutadores cumplen con el estándar WCAG/Apple HIG de al menos 44×44 píxeles táctiles.
+- **Modales y Diálogos Táctiles Optimizados**:
+  - `LegalModal`: Tabs con scroll horizontal continuo táctil (`overflow-x-auto scrollbar-none flex-nowrap sm:flex-wrap`), botón de cierre táctil y márgenes seguros `p-2.5 sm:p-4`.
+  - `CustomBoxBuilder`, `ProductModal`, `CartDrawer`, `WishlistDrawer`, `SearchModal` y `AuthModal`: adaptados con paddings móviles ergonómicos para maximizar el área útil de interacción táctil.
+- **Rendimiento GPU a 60 FPS en Dispositivos Móviles**:
+  - Reemplazo de reflows costosos en `index.css` por `translate3d` por GPU.
+  - Aligerado dinámico de partículas y sombras WebGL en Three.js con `touch-action: none`.
+
+---
+
 ## [1.2.4] - 2026-11-06
 
 ### 📱 Optimización Móvil Integral (Responsive UX / UI)

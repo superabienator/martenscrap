@@ -93,9 +93,9 @@ export const ProductModal: React.FC<ProductModalProps> = ({
       role="dialog"
       aria-modal="true"
       aria-labelledby="product-modal-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-200"
     >
-      <div className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto rounded-3xl bg-[#FAF8F5] border border-stone-200 shadow-2xl p-5 sm:p-8 living-border">
+      <div className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto rounded-3xl bg-[#FAF8F5] border border-stone-200 shadow-2xl p-4 sm:p-8 living-border">
         
         {/* Close Button */}
         <button
@@ -430,7 +430,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
         </div>
 
         {/* STICKY BOTTOM MOBILE CTA (Instant Thumb Purchase on Mobile) */}
-        <div className="md:hidden sticky bottom-0 -mx-5 -mb-5 mt-4 p-3.5 bg-white/95 backdrop-blur-md border-t border-stone-200 flex items-center gap-2.5 z-20 shadow-lg">
+        <div className="md:hidden sticky bottom-0 -mx-4 -mb-4 mt-4 p-3.5 bg-white/95 backdrop-blur-md border-t border-stone-200 flex items-center gap-2.5 z-20 shadow-lg">
           <div className="flex-1 text-left">
             <span className="text-[10px] text-stone-400 uppercase block font-bold">Total</span>
             <span className="text-base font-black text-[#9333EA]">{totalPrice.toFixed(2)} €</span>

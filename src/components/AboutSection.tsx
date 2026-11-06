@@ -3,9 +3,9 @@ import { Sparkles, Feather, Scissors } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
   return (
-    <section id="quienes-somos" className="py-16 lg:py-24 border-t border-stone-200/80">
+    <section id="quienes-somos" className="py-12 sm:py-16 lg:py-24 border-t border-stone-200/80 overflow-hidden w-full max-w-full">
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center">
           
           {/* Left: Visual Collage */}
           <div className="lg:col-span-5 relative">
@@ -13,7 +13,7 @@ export const AboutSection: React.FC = () => {
               <img
                 src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=900&q=80"
                 alt="Espacio creativo de Marta Pastor Escribano"
-                className="w-full h-[440px] object-cover"
+                className="w-full h-[280px] sm:h-[400px] md:h-[440px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 text-white">
@@ -45,7 +45,7 @@ export const AboutSection: React.FC = () => {
               Nuestra Historia & Filosofía
             </div>
 
-            <h2 className="font-display text-3xl sm:text-4xl font-black text-stone-900 tracking-tight leading-tight">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-black text-stone-900 tracking-tight leading-tight">
               Diseños propios nacidos de la devoción por la <span className="text-iridescent">lectura y el arte manual</span>.
             </h2>
 

@@ -50,9 +50,9 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       role="dialog"
       aria-modal="true"
       aria-label="Búsqueda de productos y colecciones"
-      className="fixed inset-0 z-50 flex items-start justify-center pt-20 p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-start justify-center pt-10 sm:pt-20 p-2.5 sm:p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-150"
     >
-      <div className="relative w-full max-w-2xl rounded-3xl bg-[#FAF8F5] border border-stone-200 shadow-2xl p-6 overflow-hidden">
+      <div className="relative w-full max-w-2xl rounded-3xl bg-[#FAF8F5] border border-stone-200 shadow-2xl p-4 sm:p-6 overflow-hidden">
         
         {/* Input Bar */}
         <div className="relative flex items-center">

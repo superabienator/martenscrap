@@ -146,7 +146,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
       aria-labelledby="cart-drawer-title"
       className="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-xs animate-in fade-in duration-200"
     >
-      <div className="relative w-full max-w-lg h-full bg-[#FAF8F5] border-l border-stone-200 shadow-2xl flex flex-col justify-between p-5 sm:p-6 overflow-hidden">
+      <div className="relative w-full max-w-lg h-full bg-[#FAF8F5] border-l border-stone-200 shadow-2xl flex flex-col justify-between p-4 sm:p-6 overflow-hidden">
         
         {/* If order is confirmed: Show real celebratory confirmation screen */}
         {confirmedOrder ? (

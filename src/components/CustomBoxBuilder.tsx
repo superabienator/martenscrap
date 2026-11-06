@@ -80,15 +80,15 @@ export const CustomBoxBuilder: React.FC<CustomBoxBuilderProps> = ({
       role="dialog"
       aria-modal="true"
       aria-labelledby="box-builder-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-200"
     >
-      <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl bg-[#FAF8F5] border border-stone-200 shadow-2xl p-6 sm:p-8 living-border">
+      <div className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto rounded-3xl bg-[#FAF8F5] border border-stone-200 shadow-2xl p-4 sm:p-8 living-border">
         
         {/* Close Button */}
         <button
           onClick={onClose}
           aria-label="Cerrar configurador de caja regalo"
-          className="absolute top-6 right-6 p-2 rounded-full bg-white text-stone-600 hover:text-stone-900 shadow-sm transition-all hover:scale-105 z-10 cursor-pointer"
+          className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 rounded-full bg-white text-stone-600 hover:text-stone-900 shadow-sm transition-all hover:scale-105 z-10 cursor-pointer"
         >
           <X className="w-5 h-5" aria-hidden="true" />
         </button>
@@ -164,8 +164,8 @@ export const CustomBoxBuilder: React.FC<CustomBoxBuilderProps> = ({
             />
           </div>
 
-          {/* Box slots visual grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-6 gap-2">
+          {/* Box slots visual grid (3 cols in mobile, 6 in desktop) */}
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
             {Array.from({ length: 6 }).map((_, index) => {
               const item = selectedItems[index];
               return (
@@ -269,20 +269,20 @@ export const CustomBoxBuilder: React.FC<CustomBoxBuilderProps> = ({
         </div>
 
         {/* Complete button */}
-        <div className="flex items-center justify-end gap-3 pt-4 border-t border-stone-200">
+        <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2.5 sm:gap-3 pt-4 border-t border-stone-200">
           <button
             onClick={onClose}
-            className="px-5 py-3 rounded-xl text-stone-600 hover:text-stone-900 text-xs font-bold transition-colors"
+            className="w-full sm:w-auto px-5 py-3 rounded-xl text-stone-600 hover:text-stone-900 text-xs font-bold transition-colors text-center cursor-pointer min-h-[44px]"
           >
             Cancelar
           </button>
           <button
             onClick={handleCompleteBox}
             disabled={selectedItems.length === 0}
-            className="px-8 py-3 rounded-2xl bg-[#9333EA] hover:bg-[#7E22CE] text-white font-extrabold text-sm shadow-lg transition-all flex items-center gap-2 disabled:opacity-40"
+            className="w-full sm:w-auto px-6 sm:px-8 py-3 rounded-2xl bg-[#9333EA] hover:bg-[#7E22CE] text-white font-extrabold text-xs sm:text-sm shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-40 cursor-pointer min-h-[46px]"
           >
             <Gift className="w-4 h-4" />
-            Añadir Caja Completa a la Cesta ({finalPrice.toFixed(2)} €)
+            <span>Añadir Caja a la Cesta ({finalPrice.toFixed(2)} €)</span>
           </button>
         </div>
 

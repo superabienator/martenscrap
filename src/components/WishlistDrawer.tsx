@@ -59,7 +59,7 @@ export const WishlistDrawer: React.FC<WishlistDrawerProps> = ({
       aria-labelledby="wishlist-drawer-title"
       className="fixed inset-0 z-50 flex justify-end bg-black/50 backdrop-blur-xs animate-in fade-in duration-200"
     >
-      <div className="relative w-full max-w-md h-full bg-[#FAF8F5] border-l border-stone-200 shadow-2xl flex flex-col justify-between p-6 overflow-hidden">
+      <div className="relative w-full max-w-md h-full bg-[#FAF8F5] border-l border-stone-200 shadow-2xl flex flex-col justify-between p-4 sm:p-6 overflow-hidden">
         
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-stone-200 shrink-0">

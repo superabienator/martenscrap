@@ -36,9 +36,9 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contacto" className="py-16 lg:py-24 border-t border-stone-200/80 bg-stone-50/50">
+    <section id="contacto" className="py-12 sm:py-16 lg:py-24 border-t border-stone-200/80 bg-stone-50/50 overflow-hidden w-full max-w-full">
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12">
           
           {/* Left: Info */}
           <div className="lg:col-span-5 space-y-6">
@@ -47,7 +47,7 @@ export const ContactSection: React.FC = () => {
               Estamos aquí para ayudarte
             </div>
 
-            <h2 className="font-display text-3xl sm:text-4xl font-black text-stone-900 tracking-tight">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-black text-stone-900 tracking-tight">
               ¿Tienes una duda o quieres un <span className="text-iridescent">encargo personalizado</span>?
             </h2>
 

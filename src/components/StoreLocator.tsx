@@ -25,7 +25,7 @@ export const StoreLocator: React.FC = () => {
   };
 
   return (
-    <section id="tiendas-fisicas" className="py-16 lg:py-24 border-t border-stone-200/80 bg-white/60">
+    <section id="tiendas-fisicas" className="py-12 sm:py-16 lg:py-24 border-t border-stone-200/80 bg-white/60">
       <div className="max-w-7xl mx-auto px-4 lg:px-8 space-y-8">
         
         {/* Section Header */}
@@ -34,7 +34,7 @@ export const StoreLocator: React.FC = () => {
             <MapPin className="w-3.5 h-3.5 text-amber-600" />
             Presencia Física
           </div>
-          <h2 className="font-display text-3xl sm:text-4xl font-black text-stone-900 tracking-tight">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-black text-stone-900 tracking-tight">
             ¿Dónde puedes encontrar <span className="text-iridescent">nuestros productos</span>?
           </h2>
           <p className="text-sm text-stone-600">
