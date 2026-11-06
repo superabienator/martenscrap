@@ -120,9 +120,9 @@ export const EDITORIAL_FEATURES: EditorialFeature[] = [
       'Marcapáginas magnéticos de Brujitas',
       'Dragón Articulado Dark Obsidian 3D',
       'Funda de libros aterciopelada Corte Nocturna',
-      'Velas de soja artesanal Calabaza & Canela'
+      'Velas de soja Calabaza & Canela'
     ],
-    itemCountLabel: '+14 piezas artesanales',
+    itemCountLabel: '+14 novedades de temporada',
     images: [
       {
         url: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80',
@@ -150,7 +150,7 @@ export const EDITORIAL_FEATURES: EditorialFeature[] = [
     badgeStyle: 'kawaii',
     dateLabel: 'Novedades de Milán en Taller',
     title: 'Legami Manía: Bolis Borrables & Papelería Pastel',
-    subtitle: 'La ternura italiana combinada con libretas y complementos artesanales',
+    subtitle: 'La ternura italiana combinada con libretas y complementos para lectores',
     story: 'Llega la nueva tirada de bolígrafos borrables térmicos de animales Legami (Panda, Corgi, Koala y Osito), junto a libretas cosidas a mano con guardas florales y pegatinas exclusivas de Marta Pastor.',
     includedItemsSummary: [
       'Bolis borrables termosensibles Legami',
@@ -170,7 +170,7 @@ export const EDITORIAL_FEATURES: EditorialFeature[] = [
       },
       {
         url: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80',
-        caption: 'Diario de lecturas y caligrafía artesanal'
+        caption: 'Diario de lecturas y caligrafía'
       }
     ],
     ctaText: 'Explorar Universo Legami',
@@ -198,7 +198,7 @@ export const EDITORIAL_FEATURES: EditorialFeature[] = [
     images: [
       {
         url: 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=800&q=80',
-        caption: 'Puesto artesanal de taller y libros de autor'
+        caption: 'Punto de venta de libros y accesorios'
       },
       {
         url: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80',
@@ -217,7 +217,7 @@ export const EDITORIAL_FEATURES: EditorialFeature[] = [
     category: 'DIARIO DE TALLER',
     badgeText: '🎁 EXPERIENCIA DE AUTOR',
     badgeStyle: 'mystery',
-    dateLabel: 'Servicio Artesanal Permanente',
+    dateLabel: 'Disponible todo el año',
     title: 'Cajas Literarias & Experiencia "Arma tu Caja"',
     subtitle: 'Cajas sorpresa temáticas con lacre tradicional, lazo de raso y selección sorpresa',
     story: 'Un unboxing inolvidable concebido para lectores empedernidos. Cada caja se prepara a mano en Valencia: combinamos figura 3D, marcapáginas magnéticos, funda de libro y carta manuscrita sellada a la cera.',
@@ -231,7 +231,7 @@ export const EDITORIAL_FEATURES: EditorialFeature[] = [
     images: [
       {
         url: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=80',
-        caption: 'Caja de regalo artesanal con cinta de raso'
+        caption: 'Caja de regalo preparada con cinta de raso'
       },
       {
         url: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80',

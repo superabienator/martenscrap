@@ -12,13 +12,13 @@ export const AboutSection: React.FC = () => {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-amber-100">
               <img
                 src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=900&q=80"
-                alt="Taller artesanal de Marta Pastor Escribano"
+                alt="Espacio creativo de Marta Pastor Escribano"
                 className="w-full h-[440px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 text-white">
                 <span className="text-xs font-bold uppercase tracking-wider text-amber-300">
-                  El Taller • Marta Pastor Escribano
+                  El Estudio • Marta Pastor Escribano
                 </span>
                 <p className="font-display font-black text-xl mt-1">
                   Donde la tinta y el papel cobran vida
@@ -50,7 +50,7 @@ export const AboutSection: React.FC = () => {
             </h2>
 
             <p className="text-sm sm:text-base text-stone-600 leading-relaxed">
-              Detrás de <strong>Martenscrap</strong> está Marta Pastor Escribano, ilustradora y artesana. Lo que comenzó como un pequeño rincón de papelería creativa se ha convertido en el refugio de miles de lectores que buscan acompañar sus historias favoritas con objetos únicos, cuidados hasta el último milímetro.
+              Detrás de <strong>Martenscrap</strong> está Marta Pastor Escribano, ilustradora y creadora de la marca. Lo que comenzó como un pequeño rincón de papelería creativa se ha convertido en la tienda de referencia para miles de lectores que buscan acompañar sus historias favoritas con marcapáginas magnéticos, papelería Legami y figuras 3D coleccionables.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">

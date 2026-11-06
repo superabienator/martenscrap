@@ -279,15 +279,15 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                   <Layers className="w-4 h-4 text-[#9333EA] shrink-0 mt-0.5" />
                   <div>
                     <span className="font-bold text-stone-800 block">Materiales empleados:</span>
-                    <span className="text-stone-600">{product.materials || 'Materiales sostenibles de calidad artesana'}</span>
+                    <span className="text-stone-600">{product.materials || 'Materiales seleccionados de primera calidad'}</span>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-2.5">
                   <HeartHandshake className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold text-stone-800 block">Taller de Origen:</span>
-                    <span className="text-stone-600">Confeccionado a mano por Marta Pastor Escribano</span>
+                    <span className="font-bold text-stone-800 block">Marca & Diseño:</span>
+                    <span className="text-stone-600">Creación original de Marta Pastor Escribano</span>
                   </div>
                 </div>
               </div>
@@ -300,7 +300,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                   {product.careInstructions || 'Limpiar con un paño seco suave. Evitar la exposición directa a fuentes de calor extremo y humedad continuada.'}
                 </p>
                 <div className="text-[11px] text-purple-700 bg-purple-50 p-2 rounded-xl border border-purple-100">
-                  ✨ Cada pieza es inspeccionada individualmente antes de salir del taller para garantizar la máxima durabilidad.
+                  ✨ Cada artículo es revisado individualmente antes de enviarse para garantizar la máxima calidad.
                 </div>
               </div>
             )}

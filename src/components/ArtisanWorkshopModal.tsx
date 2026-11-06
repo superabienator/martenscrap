@@ -174,8 +174,8 @@ export const ArtisanWorkshopModal: React.FC<ArtisanWorkshopModalProps> = ({
       rating: 5.0,
       reviewsCount: 1,
       craftStatus: 'ready_to_ship',
-      dimensions: 'Medida estándar artesanal',
-      materials: 'Materiales sostenibles de primera calidad',
+      dimensions: 'Medida estándar',
+      materials: 'Materiales seleccionados de primera calidad',
       careInstructions: 'Limpieza suave en seco con paño de microfibra.'
     });
   };
@@ -296,7 +296,7 @@ export const ArtisanWorkshopModal: React.FC<ArtisanWorkshopModalProps> = ({
           } else {
             newImages.push({
               url: result,
-              caption: 'Detalle artesanal del taller'
+              caption: 'Fotografía de detalle'
             });
           }
           setEditingPromo({ ...currentPromo, images: newImages });
@@ -419,7 +419,7 @@ export const ArtisanWorkshopModal: React.FC<ArtisanWorkshopModalProps> = ({
             <form onSubmit={handlePinSubmit} className="w-full space-y-4">
               <div className="space-y-1 text-left">
                 <label className="block text-xs font-black text-stone-800">
-                  Introduce tu PIN de artesana:
+                  Introduce tu PIN de administradora:
                 </label>
                 <div className="relative">
                   <input
@@ -605,7 +605,7 @@ export const ArtisanWorkshopModal: React.FC<ArtisanWorkshopModalProps> = ({
                       <div className="flex items-center justify-between pb-3 border-b border-stone-200">
                         <div>
                           <h3 className="font-display font-black text-xl text-stone-900">
-                            {isCreatingNew ? '✨ Crear Nueva Pieza Artesanal' : `✏️ Modificar: ${editingProduct.name}`}
+                            {isCreatingNew ? '✨ Añadir Nuevo Producto al Catálogo' : `✏️ Modificar: ${editingProduct.name}`}
                           </h3>
                           <p className="text-xs text-stone-500">
                             Puedes subir varias fotos, añadir modelos de personajes y detalles de confección.
@@ -943,7 +943,7 @@ export const ArtisanWorkshopModal: React.FC<ArtisanWorkshopModalProps> = ({
                                 className="w-full h-full object-cover"
                               />
                               <span className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-stone-900/80 backdrop-blur-md text-white text-[10px] font-bold">
-                                {editingProduct.department || 'ARTESANÍA'}
+                                {editingProduct.department || 'PAPELERÍA'}
                               </span>
                               {editingProduct.images && editingProduct.images.length > 1 && (
                                 <span className="absolute bottom-3 right-3 px-2 py-0.5 rounded-full bg-black/60 text-white text-[10px] font-bold">
@@ -955,7 +955,7 @@ export const ArtisanWorkshopModal: React.FC<ArtisanWorkshopModalProps> = ({
                             <div>
                               <div className="flex justify-between items-start gap-2">
                                 <h4 className="font-display font-black text-base text-stone-900 line-clamp-2">
-                                  {editingProduct.name || 'Nombre de tu pieza artesanal'}
+                                  {editingProduct.name || 'Nombre del producto'}
                                 </h4>
                                 <span className="text-base font-black text-[#9333EA] shrink-0">
                                   {(editingProduct.price || 0).toFixed(2)} €
@@ -1370,7 +1370,7 @@ export const ArtisanWorkshopModal: React.FC<ArtisanWorkshopModalProps> = ({
 
                       <div>
                         <label className="block text-xs font-black text-stone-800 mb-1">
-                          Etiqueta de conteo (ej: +14 piezas artesanales)
+                          Etiqueta de conteo (ej: +14 novedades de temporada)
                         </label>
                         <input
                           type="text"

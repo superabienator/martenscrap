@@ -29,8 +29,8 @@ export const Footer: React.FC<FooterProps> = ({
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-xs font-bold text-white uppercase tracking-wider">Artesanía de Autor</h4>
-              <p className="text-xs text-stone-400">Cada marcapáginas e ilustración es creada con mimo en España.</p>
+              <h4 className="text-xs font-bold text-white uppercase tracking-wider">Diseño Propio & Calidad</h4>
+              <p className="text-xs text-stone-400">Artículos cuidados al detalle y creaciones pensadas para lectores.</p>
             </div>
           </div>
 
@@ -80,7 +80,7 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
 
             <p className="text-xs text-stone-400 leading-relaxed max-w-sm">
-              Papelería artesanal, marcapáginas magnéticos, standees acrílicos 3D y objetos de colección pensados para los amantes de las buenas historias.
+              Marcapáginas magnéticos de diseño propio, papelería kawaii Legami, figuras 3D y objetos de colección pensados para los amantes de las buenas historias.
             </p>
 
             {/* Social handles */}

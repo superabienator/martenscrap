@@ -6,6 +6,25 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 
 ---
 
+## [1.2.3] - 2026-11-06
+
+### 🎨 Identidad de Marca & Favicon Oficial
+- **Favicon oficial "M" de Martenscrap con recorte y transparencia idénticos a la pestaña original**:
+  - Extraído el monograma original "M" de Martenscrap a partir del archivo maestro en alta resolución (512×512) con fondo 100% transparente y anti-aliasing suave.
+  - Generado `favicon.ico` multi-resolución (16×16, 32×32, 48×48) compatible con todos los navegadores de escritorio (Chrome, Edge, Firefox, Safari).
+  - Generados `favicon.svg` (vectorial / alta resolución), `favicon-32x32.png`, `favicon-16x16.png`, `android-chrome-192x192.png` y `apple-touch-icon.png` (180×180).
+  - Eliminado cualquier recuadro o fondo blanco: la "M" queda limpia y flotante directamente sobre la pestaña del navegador, exactamente igual que en la tienda de referencia.
+
+### ✍️ Redacción & Tono Comercial Equilibrado
+- **Eliminación del uso redundante de las palabras "artesano", "artesanal" y "taller" en toda la plataforma**:
+  - **Traducciones (ES, CA, EN, FR)**: Se sustituyó *"ARTESANAL"* y *"Artesanía de Autor"* por expresiones más acordes al amplio catálogo de la tienda: *"DISEÑO PROPIO"*, *"Selección Destacada"*, *"Colección de Temporada"*, *"Modelos 3D y papelería kawaii"* y *"Diseño Original & Calidad"*.
+  - **Aviso Legal y RGPD (`LegalModal`)**: Redacción legal limpia reflejando la actividad de venta de papelería, marcapáginas magnéticos, artículos de regalo, papelería Legami e impresión 3D.
+  - **Carrito y Conversión (`CartDrawer`)**: Cambio de frases forzadas como *"Completa tu pedido artesano"* por *"Completa tu pedido y ahorra el envío"* y agradecimiento comercial natural (*"¡Gracias por tu pedido!"*).
+  - **Ficha de Producto (`ProductModal`)**: Especificación de *"Materiales seleccionados de primera calidad"* y *"Marca & Diseño: Creación original de Marta Pastor Escribano"*.
+  - **Sección Sobre Nosotros (`AboutSection`), Footer y FAQ**: Enfoque moderno de tienda creativa y especializada para amantes de la lectura, manteniendo la calidez sin sobrecargar el lenguaje.
+
+---
+
 ## [1.2.2] - 2026-11-06
 
 ### ✨ Motor 3D & Presentación Visual

@@ -161,10 +161,10 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   ¡Pedido Confirmado con Éxito!
                 </span>
                 <h3 className="font-display font-black text-2xl text-stone-900 pt-1">
-                  ¡Gracias por apoyar la artesanía!
+                  ¡Gracias por tu pedido!
                 </h3>
                 <p className="text-xs text-stone-600 max-w-xs mx-auto">
-                  Marta Pastor ya ha recibido tu encargo y comienza a prepararlo con mimo en el taller de Martenscrap.
+                  Marta Pastor ya ha recibido tu encargo y comienza a prepararlo con mimo para enviártelo cuanto antes.
                 </p>
               </div>
 
@@ -326,7 +326,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-black text-purple-900 flex items-center gap-1.5">
                           <Sparkles className="w-3.5 h-3.5 text-[#9333EA]" />
-                          Completa tu pedido artesano
+                          Completa tu pedido y ahorra el envío
                         </span>
                         <span className="text-[10px] text-purple-700 font-bold">Desde 2.95 €</span>
                       </div>
@@ -487,7 +487,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                     </span>
                   </div>
                   <p className="text-[10px] text-center text-stone-400">
-                    Marta Pastor Escribano • Taller oficial de artesanía Martenscrap
+                    Marta Pastor Escribano • Tienda oficial Martenscrap
                   </p>
                 </div>
 

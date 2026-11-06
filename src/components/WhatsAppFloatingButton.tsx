@@ -8,7 +8,7 @@ interface WhatsAppFloatingButtonProps {
 
 export const WhatsAppFloatingButton: React.FC<WhatsAppFloatingButtonProps> = ({
   phoneNumber = '34600000000',
-  defaultMessage = '¡Hola Marta! He visto tu tienda Martenscrap y me gustaría consultarte una duda sobre una pieza artesanal.'
+  defaultMessage = '¡Hola Marta! He visto tu tienda Martenscrap y me gustaría consultarte una duda sobre un producto de la tienda.'
 }) => {
   const [showTooltip, setShowTooltip] = useState(true);
 

@@ -19,7 +19,7 @@ export const DEFAULT_FAQS: FAQItem[] = [
     id: 'faq-1',
     category: 'envios',
     question: '¿Cuánto tardan los envíos y cuál es el coste?',
-    answer: 'Los artículos en stock se envían en 24-48 horas laborables mediante Correos Express o GLS con seguimiento en tiempo real. Los pedidos hechos a medida o personalizados se elaboran en nuestro taller en 2 a 4 días antes del envío. Los gastos de envío son de 3,95 € para Península y ¡GRATUITOS en pedidos superiores a 45 €! También realizamos envíos a Baleares y Canarias.'
+    answer: 'Los artículos en stock se envían en 24-48 horas laborables mediante Correos Express o GLS con seguimiento en tiempo real. Los pedidos personalizados o a medida se preparan con mimo en 2 a 4 días antes del envío. Los gastos de envío son de 3,95 € para Península y ¡GRATUITOS en pedidos superiores a 45 €! También realizamos envíos a Baleares y Canarias.'
   },
   {
     id: 'faq-2',
@@ -43,7 +43,7 @@ export const DEFAULT_FAQS: FAQItem[] = [
     id: 'faq-5',
     category: 'pedidos',
     question: '¿Puedo solicitar encargos personalizados para regalos o eventos?',
-    answer: '¡Por supuesto! En Martenscrap nos encanta crear piezas únicas. Si buscas detalles para clubes de lectura, cumpleaños, bodas o marcapáginas con nombres y dedicatorias exclusivas, puedes escribirnos por nuestro formulario o directamente por WhatsApp para coordinar colores, tipografías y presupuestos sin compromiso.'
+    answer: '¡Por supuesto! En Martenscrap nos encanta preparar pedidos especiales y detalles personalizados. Si buscas detalles para clubes de lectura, cumpleaños, bodas o marcapáginas con nombres y dedicatorias exclusivas, puedes escribirnos por nuestro formulario o directamente por WhatsApp para coordinar colores, tipografías y presupuestos sin compromiso.'
   },
   {
     id: 'faq-6',
@@ -67,7 +67,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
   return (
     <section 
       id="preguntas-frecuentes"
-      aria-label="Preguntas Frecuentes del Taller Martenscrap"
+      aria-label="Preguntas Frecuentes de la Tienda Martenscrap"
       className="py-16 sm:py-20 bg-stone-100/60 border-t border-stone-200/80 relative overflow-hidden"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,7 +80,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
           </div>
           
           <h2 className="font-display text-3xl sm:text-4xl font-black text-stone-900 tracking-tight">
-            Preguntas Frecuentes del <span className="text-iridescent">Taller Artesano</span>
+            Preguntas Frecuentes de la <span className="text-iridescent">Tienda</span>
           </h2>
           
           <p className="text-sm sm:text-base text-stone-600 max-w-xl mx-auto">

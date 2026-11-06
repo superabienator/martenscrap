@@ -35,7 +35,7 @@ export const BrandIntroAnimation: React.FC = () => {
     <div 
       className="relative w-full flex flex-col items-center justify-center my-4 sm:my-6 select-none cursor-pointer group"
       onClick={handleReplay}
-      title="Martenscrap • Clic para repetir animación artesanal"
+      title="Martenscrap • Clic para repetir animación"
       role="banner"
     >
       {/* Centered Floating Logo Canvas Area (Seamless, no card, floating directly on ambient background) */}

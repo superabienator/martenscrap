@@ -440,7 +440,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'prod-comp-3',
-    name: 'Contador de Libros de Madera Artesanal Grabado',
+    name: 'Contador de Libros de Madera Grabado a Láser',
     department: 'COMPLEMENTOS',
     subCategory: 'Contador de libros',
     fandom: 'LITERARIO',

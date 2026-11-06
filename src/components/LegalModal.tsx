@@ -95,7 +95,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
               <ul className="list-disc pl-5 space-y-1">
                 <li><strong>Titular:</strong> Marta Pastor Escribano</li>
                 <li><strong>Nombre Comercial:</strong> Martenscrap</li>
-                <li><strong>Actividad:</strong> Creación de papelería artesanal, marcapáginas magnéticos y figuras de colección 3D.</li>
+                <li><strong>Actividad:</strong> Venta de papelería, marcapáginas magnéticos, artículos de regalo, papelería Legami e impresión 3D para lectores.</li>
                 <li><strong>Domicilio Social:</strong> Valencia, España</li>
                 <li><strong>Contacto Electrónico:</strong> hola@martenscrap.com</li>
               </ul>
