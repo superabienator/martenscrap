@@ -3,6 +3,13 @@ import * as THREE from 'three';
 import { playMagneticSnapSound, playPopSound } from '../utils/audio';
 import { RotateCw, Sparkles, Volume2, RefreshCw, Upload, Cpu, ZoomIn, ZoomOut } from 'lucide-react';
 import { TRANSLATIONS, type Language } from '../i18n/translations';
+import { 
+  createBookmarkTexture, 
+  createStandeeTexture, 
+  createKeycapTexture, 
+  createTrackerTexture, 
+  createDialTexture 
+} from '../utils/canvasTextures';
 
 interface Viewer3DProps {
   currentTheme?: 'light' | 'candlelight';
@@ -274,26 +281,26 @@ export const Viewer3D: React.FC<Viewer3DProps> = ({
     buttonKeyRef.current = null;
 
     if (type === 'bookmark') {
-      // 1. Foldable Magnetic Bookmark - Vertically centered around y = 0
+      // 1. Foldable Magnetic Bookmark with Celestial Gold Foil Design
       const flapHeight = 1.8;
       const flapWidth = 1.2;
 
-      // Base Flap: centered at y = 0 (extends from y = -0.9 to y = 0.9)
+      // Base Flap (Back part): Deep midnight indigo
       const baseGeo = new THREE.BoxGeometry(flapWidth, flapHeight, 0.05);
       const baseMat = new THREE.MeshStandardMaterial({
-        color: 0xfaf5ff,
+        color: 0x111422,
         roughness: 0.35,
-        metalness: 0.1
+        metalness: 0.15
       });
       const baseMesh = new THREE.Mesh(baseGeo, baseMat);
       baseMesh.position.set(0, 0, 0);
       baseMesh.castShadow = true;
       mainGroup.add(baseMesh);
 
-      // Base Magnet: at y = -0.35
+      // Base Neodymium Magnet (Brushed chrome shine)
       const magnetGeo = new THREE.CylinderGeometry(0.18, 0.18, 0.04, 24);
       const magnetMat = new THREE.MeshStandardMaterial({
-        color: 0xc0c0c0,
+        color: 0xd4d4d8,
         metalness: 0.95,
         roughness: 0.15
       });
@@ -302,81 +309,151 @@ export const Viewer3D: React.FC<Viewer3DProps> = ({
       baseMagnet.position.set(0, -0.35, 0.03);
       mainGroup.add(baseMagnet);
 
-      // Top Hinge: situated at top edge y = 0.9
+      // Top Hinge at y = 0.9
       const topPivot = new THREE.Group();
       topPivot.position.set(0, 0.9, 0.025);
       topFlapRef.current = topPivot;
 
-      let topMat: THREE.Material = new THREE.MeshStandardMaterial({
-        color: 0x9333ea,
-        roughness: 0.25,
+      // Top flap artwork (Illustrated Celestial Gold Foil or custom texture)
+      let topArtworkTexture: THREE.Texture;
+      if (textureUrl) {
+        const loader = new THREE.TextureLoader();
+        topArtworkTexture = loader.load(textureUrl);
+      } else {
+        topArtworkTexture = createBookmarkTexture();
+      }
+
+      const topMat = new THREE.MeshStandardMaterial({
+        map: topArtworkTexture,
+        roughness: 0.28,
         metalness: 0.2
       });
 
-      if (textureUrl) {
-        const loader = new THREE.TextureLoader();
-        const texture = loader.load(textureUrl);
-        topMat = new THREE.MeshStandardMaterial({ map: texture, roughness: 0.3 });
-      }
-
-      // Top Flap Mesh: hangs down by flapHeight / 2 (-0.9) relative to hinge,
-      // so when closed, it aligns perfectly from y = 0.9 down to y = -0.9!
       const topMesh = new THREE.Mesh(baseGeo, topMat);
       topMesh.position.set(0, -0.9, 0.03);
       topMesh.castShadow = true;
       topPivot.add(topMesh);
 
-      // Top Magnet
+      // Top Neodymium Magnet inside the flap
       const topMagnet = new THREE.Mesh(magnetGeo, magnetMat);
       topMagnet.rotation.x = Math.PI / 2;
       topMagnet.position.set(0, -1.25, -0.01);
       topPivot.add(topMagnet);
 
-      // Decorative Chibi badge on front of top flap
-      const badgeGeo = new THREE.CylinderGeometry(0.42, 0.42, 0.06, 32);
-      const badgeMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.2 });
-      const badge = new THREE.Mesh(badgeGeo, badgeMat);
-      badge.rotation.x = Math.PI / 2;
-      badge.position.set(0, -0.9, 0.07);
-      topPivot.add(badge);
+      // Golden foil embossed seal / badge on front
+      const sealGeo = new THREE.CylinderGeometry(0.24, 0.24, 0.04, 32);
+      const sealMat = new THREE.MeshStandardMaterial({
+        color: 0xf59e0b,
+        metalness: 0.85,
+        roughness: 0.25
+      });
+      const seal = new THREE.Mesh(sealGeo, sealMat);
+      seal.rotation.x = Math.PI / 2;
+      seal.position.set(0, -0.9, 0.065);
+      topPivot.add(seal);
 
       mainGroup.add(topPivot);
     } else if (type === 'dragon') {
-      // 2. Articulated 3D Crystal Dragon - Vertically centered around y = 0
+      // 2. Articulated 3D Silk Dual-Color Dragon (Sapphire & Gold)
       const dragonMat = new THREE.MeshPhysicalMaterial({
-        color: 0x06b6d4,
-        roughness: 0.12,
-        metalness: 0.25,
-        transmission: 0.65,
-        transparent: true,
-        opacity: 0.95
+        color: 0x0284c7,
+        roughness: 0.2,
+        metalness: 0.35,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.1,
+        iridescence: 0.6
       });
 
-      // Dragon Head at y = 0.85
-      const dragonHeadGeo = new THREE.ConeGeometry(0.38, 0.8, 6);
+      const goldSpikeMat = new THREE.MeshStandardMaterial({
+        color: 0xf59e0b,
+        roughness: 0.25,
+        metalness: 0.85
+      });
+
+      // Dragon Head Group
+      const headGroup = new THREE.Group();
+      headGroup.position.set(0, 0.85, 0);
+
+      // Snout / Head body
+      const dragonHeadGeo = new THREE.ConeGeometry(0.42, 0.82, 6);
       const head = new THREE.Mesh(dragonHeadGeo, dragonMat);
       head.rotation.x = Math.PI;
-      head.position.set(0, 0.85, 0);
-      mainGroup.add(head);
+      headGroup.add(head);
 
-      // Articulated segments centered around y = 0
+      // Golden Horns (left and right curved backward)
+      const hornGeo = new THREE.ConeGeometry(0.08, 0.65, 8);
+      const leftHorn = new THREE.Mesh(hornGeo, goldSpikeMat);
+      leftHorn.position.set(-0.25, 0.3, -0.15);
+      leftHorn.rotation.set(-0.35, 0, -0.3);
+      headGroup.add(leftHorn);
+
+      const rightHorn = new THREE.Mesh(hornGeo, goldSpikeMat);
+      rightHorn.position.set(0.25, 0.3, -0.15);
+      rightHorn.rotation.set(-0.35, 0, 0.3);
+      headGroup.add(rightHorn);
+
+      // Golden Dragon Eyes with dark slit
+      const eyeGeo = new THREE.SphereGeometry(0.07, 16, 16);
+      const eyeMat = new THREE.MeshStandardMaterial({ color: 0xfef08a, roughness: 0.1, metalness: 0.4 });
+      const leftEye = new THREE.Mesh(eyeGeo, eyeMat);
+      leftEye.position.set(-0.22, 0.05, 0.22);
+      headGroup.add(leftEye);
+
+      const rightEye = new THREE.Mesh(eyeGeo, eyeMat);
+      rightEye.position.set(0.22, 0.05, 0.22);
+      headGroup.add(rightEye);
+
+      mainGroup.add(headGroup);
+
+      // Articulated segments with golden dorsal spikes
       const segments: THREE.Mesh[] = [];
       for (let i = 0; i < 7; i++) {
-        const segGeo = new THREE.BoxGeometry(0.55 - i * 0.04, 0.26, 0.42 - i * 0.03);
-        const seg = new THREE.Mesh(segGeo, dragonMat);
-        // Positioned symmetrically from y = 0.4 down to y = -0.95 (center ~ -0.25)
-        seg.position.set(0, 0.4 - i * 0.25, 0);
-        seg.castShadow = true;
-        mainGroup.add(seg);
-        segments.push(seg);
+        const segGroup = new THREE.Mesh(
+          new THREE.BoxGeometry(0.58 - i * 0.04, 0.26, 0.44 - i * 0.03),
+          dragonMat
+        );
+        segGroup.position.set(0, 0.4 - i * 0.24, 0);
+        segGroup.castShadow = true;
+
+        // Golden dorsal spike on top of each segment
+        const spikeGeo = new THREE.ConeGeometry(0.12 - i * 0.008, 0.28, 4);
+        const spike = new THREE.Mesh(spikeGeo, goldSpikeMat);
+        spike.position.set(0, 0.22, 0);
+        spike.rotation.x = -0.3;
+        segGroup.add(spike);
+
+        // Claws / Fins on first 2 segments
+        if (i === 1 || i === 2) {
+          const finGeo = new THREE.ConeGeometry(0.09, 0.36, 4);
+          const leftFin = new THREE.Mesh(finGeo, goldSpikeMat);
+          leftFin.position.set(-0.35, 0, 0);
+          leftFin.rotation.z = Math.PI / 2 + 0.3;
+          segGroup.add(leftFin);
+
+          const rightFin = new THREE.Mesh(finGeo, goldSpikeMat);
+          rightFin.position.set(0.35, 0, 0);
+          rightFin.rotation.z = -Math.PI / 2 - 0.3;
+          segGroup.add(rightFin);
+        }
+
+        mainGroup.add(segGroup);
+        segments.push(segGroup);
       }
+
+      // Tail arrow tip at the end of the last segment
+      const tailTipGeo = new THREE.ConeGeometry(0.24, 0.45, 4);
+      const tailTip = new THREE.Mesh(tailTipGeo, goldSpikeMat);
+      tailTip.position.set(0, -1.45, 0);
+      tailTip.rotation.x = Math.PI;
+      mainGroup.add(tailTip);
+
       dragonSegmentsRef.current = segments;
     } else if (type === 'clicker') {
-      // 3. Fidget 3D Clicker - Vertically centered around y = 0
-      const caseGeo = new THREE.BoxGeometry(1.6, 1.3, 1.4);
+      // 3. Fidget 3D Mechanical Clicker (Galaxy Black PLA + Kawaii Cat Paw Keycap + Keychain Ring)
+      const caseGeo = new THREE.BoxGeometry(1.65, 1.3, 1.45);
       const caseMat = new THREE.MeshStandardMaterial({
-        color: 0x1f2937,
-        roughness: 0.4,
+        color: 0x18181b,
+        roughness: 0.35,
         metalness: 0.2
       });
       const casing = new THREE.Mesh(caseGeo, caseMat);
@@ -384,64 +461,110 @@ export const Viewer3D: React.FC<Viewer3DProps> = ({
       casing.castShadow = true;
       mainGroup.add(casing);
 
-      // Switch Keycap (pulsador) centered on top
-      const keycapGeo = new THREE.BoxGeometry(1.1, 0.5, 1.1);
+      // Chrome Metallic Keychain Ring on top-left corner
+      const ringGeo = new THREE.TorusGeometry(0.28, 0.045, 16, 32);
+      const ringMat = new THREE.MeshStandardMaterial({
+        color: 0xe4e4e7,
+        metalness: 0.95,
+        roughness: 0.1
+      });
+      const ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.position.set(-0.85, 0.3, 0);
+      ring.rotation.y = Math.PI / 2;
+      mainGroup.add(ring);
+
+      // Mechanical Switch Housing (Blue mechanical switch stem)
+      const switchBaseGeo = new THREE.BoxGeometry(0.9, 0.25, 0.9);
+      const switchBaseMat = new THREE.MeshStandardMaterial({
+        color: 0x2563eb,
+        roughness: 0.3
+      });
+      const switchBase = new THREE.Mesh(switchBaseGeo, switchBaseMat);
+      switchBase.position.set(0, 0.52, 0);
+      mainGroup.add(switchBase);
+
+      // Keycap textured with Kawaii Paw Pad
+      const keycapTexture = createKeycapTexture();
       const keycapMat = new THREE.MeshStandardMaterial({
-        color: 0xec4899,
-        roughness: 0.2,
+        map: keycapTexture,
+        roughness: 0.25,
         metalness: 0.1
       });
+      const keycapGeo = new THREE.BoxGeometry(1.15, 0.45, 1.15);
       const keycap = new THREE.Mesh(keycapGeo, keycapMat);
-      keycap.position.set(0, 0.65, 0);
+      keycap.position.set(0, 0.72, 0);
       keycap.castShadow = true;
       mainGroup.add(keycap);
       buttonKeyRef.current = keycap;
     } else if (type === 'standee') {
-      // 4. Standee Acrílico - Vertically centered around y = 0
-      const baseGeo = new THREE.CylinderGeometry(1.1, 1.1, 0.1, 32);
+      // 4. Optical Acrylic Standee with Illustrated Chibi Artwork
+      const baseGeo = new THREE.CylinderGeometry(1.2, 1.2, 0.12, 32);
       const baseMat = new THREE.MeshPhysicalMaterial({
         color: 0xffffff,
-        transmission: 0.85,
+        transmission: 0.95,
         transparent: true,
-        roughness: 0.1
+        roughness: 0.05,
+        ior: 1.49
       });
       const base = new THREE.Mesh(baseGeo, baseMat);
-      base.position.set(0, -0.9, 0);
+      base.position.set(0, -0.92, 0);
       mainGroup.add(base);
 
-      const uprightGeo = new THREE.BoxGeometry(1.4, 1.8, 0.08);
+      // Upright optical clear acrylic pane
+      const uprightGeo = new THREE.BoxGeometry(1.45, 1.88, 0.08);
       const uprightMat = new THREE.MeshPhysicalMaterial({
-        color: 0xfff0fa,
-        transmission: 0.8,
+        color: 0xffffff,
+        transmission: 0.94,
         transparent: true,
-        roughness: 0.05
+        roughness: 0.04,
+        ior: 1.49
       });
       const upright = new THREE.Mesh(uprightGeo, uprightMat);
       upright.position.set(0, 0.05, 0);
       upright.castShadow = true;
       mainGroup.add(upright);
 
-      const coreGeo = new THREE.PlaneGeometry(1.2, 1.6);
-      const coreMat = new THREE.MeshStandardMaterial({ color: 0xec4899, side: THREE.DoubleSide });
-      const core = new THREE.Mesh(coreGeo, coreMat);
-      core.position.set(0, 0.05, 0.001);
-      mainGroup.add(core);
+      // Artwork inside the acrylic pane (Illustrated Chibi Dragon on Books)
+      const standeeArtTexture = createStandeeTexture();
+      const artGeo = new THREE.PlaneGeometry(1.38, 1.8);
+      const artMat = new THREE.MeshStandardMaterial({
+        map: standeeArtTexture,
+        transparent: true,
+        side: THREE.DoubleSide,
+        roughness: 0.2
+      });
+      const artMesh = new THREE.Mesh(artGeo, artMat);
+      artMesh.position.set(0, 0.05, 0.002);
+      mainGroup.add(artMesh);
     } else {
-      // 5. Wooden Book Tracker - Vertically centered around y = 0
-      const woodGeo = new THREE.BoxGeometry(2.4, 1.4, 0.18);
-      const woodMat = new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.7 });
+      // 5. Engraved Birch Wood Book Tracker with 3 Rotating Brass Dials
+      const woodTexture = createTrackerTexture();
+      const woodGeo = new THREE.BoxGeometry(2.5, 1.45, 0.18);
+      const woodMat = new THREE.MeshStandardMaterial({
+        map: woodTexture,
+        roughness: 0.65,
+        metalness: 0.05
+      });
       const plate = new THREE.Mesh(woodGeo, woodMat);
       plate.position.set(0, 0, 0);
       plate.castShadow = true;
       mainGroup.add(plate);
 
-      for (let i = -0.6; i <= 0.6; i += 0.6) {
-        const dialGeo = new THREE.CylinderGeometry(0.24, 0.24, 0.24, 24);
-        const dialMat = new THREE.MeshStandardMaterial({ color: 0x78350f, roughness: 0.4 });
+      const dialTexture = createDialTexture();
+      const dialMat = new THREE.MeshStandardMaterial({
+        map: dialTexture,
+        roughness: 0.35,
+        metalness: 0.6
+      });
+
+      const positions = [-0.62, 0, 0.62];
+      positions.forEach((xPos) => {
+        const dialGeo = new THREE.CylinderGeometry(0.24, 0.24, 0.22, 28);
         const dial = new THREE.Mesh(dialGeo, dialMat);
-        dial.position.set(i, 0, 0.06);
+        dial.position.set(xPos, -0.05, 0.07);
+        dial.rotation.x = Math.PI / 2;
         mainGroup.add(dial);
-      }
+      });
     }
   };
 
@@ -456,9 +579,9 @@ export const Viewer3D: React.FC<Viewer3DProps> = ({
     playPopSound();
     setClickCount(prev => prev + 1);
     if (buttonKeyRef.current) {
-      buttonKeyRef.current.position.y = 0.5;
+      buttonKeyRef.current.position.y = 0.58;
       setTimeout(() => {
-        if (buttonKeyRef.current) buttonKeyRef.current.position.y = 0.65;
+        if (buttonKeyRef.current) buttonKeyRef.current.position.y = 0.72;
       }, 100);
     }
   };
@@ -534,6 +657,16 @@ export const Viewer3D: React.FC<Viewer3DProps> = ({
           >
             ✨ Standee
           </button>
+          <button
+            onClick={() => setModelType('tracker')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+              modelType === 'tracker'
+                ? 'bg-[#1C1917] text-white shadow-xs'
+                : 'text-[#57534E] hover:bg-neutral-100'
+            }`}
+          >
+            📖 Contador
+          </button>
         </div>
       </div>
 
@@ -601,12 +734,20 @@ export const Viewer3D: React.FC<Viewer3DProps> = ({
         ) : modelType === 'dragon' ? (
           <div className="flex items-center gap-2">
             <span className="text-xs font-bold text-cyan-800 bg-cyan-100 px-3 py-1 rounded-full">
-              🐉 Pieza articulada 3D print-in-place
+              🐉 Pieza articulada 3D en filamento seda zafiro y oro
+            </span>
+          </div>
+        ) : modelType === 'tracker' ? (
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold text-amber-900 bg-amber-100 px-3 py-1 rounded-full">
+              📖 Madera grabada a láser con diales de latón
             </span>
           </div>
         ) : (
           <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold text-[#78716C]">Metacrilato óptico 4mm</span>
+            <span className="text-xs font-semibold text-purple-900 bg-purple-100 px-3 py-1 rounded-full">
+              ✨ Standee acrílico óptico 4mm con ilustración chibi
+            </span>
           </div>
         )}
 

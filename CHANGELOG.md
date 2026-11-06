@@ -6,6 +6,20 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 
 ---
 
+## [1.2.2] - 2026-11-06
+
+### ✨ Motor 3D & Presentación Visual
+- **Diseños e ilustraciones de autor predefinidos en todos los modelos 3D (`Viewer3D`)**:
+  - **🧲 Marcapáginas Magnético:** Ilustración celestial *"Aquelarre Literario"* en azul medianoche y pan de oro con luna creciente, constelaciones, pila de libros antiguos y sellos de taller en relieve.
+  - **🐉 Dragón Articulado 3D:** Modelado orgánico en filamento seda zafiro y oro iridiscente, con cuernos dorados curvados, ojos de reptil brillantes, crestas espinosas dorsales en cada vértebra y punta de cola en flecha.
+  - **🔘 Fidget Clicker Antiestrés:** Tecla mecánica artesanal kawaii texturizada con huella de gato (*cat paw*), vástago mecánico azul visible, carcasa Galaxy Black y anilla metálica de llavero cromada.
+  - **✨ Standee Acrílico:** Panel de metacrilato óptico cortado a láser con ilustración original a todo color (simpático dragón chibi lector sobre tomos antiguos con destellos mágicos).
+  - **📖 Contador de Lecturas:** Madera de abedul grabada a láser con motivos botánicos y diales giratorios concéntricos de latón envejecido marcados del 0 al 9.
+  - Generador procedural de texturas nítidas en Canvas sin latencia de red ni dependencias externas ([`src/utils/canvasTextures.ts`](./src/utils/canvasTextures.ts)).
+  - Añadido selector directo para el 5º modelo (Contador de Lectura) en la botonera del visor 3D.
+
+---
+
 ## [1.2.1] - 2026-11-06
 
 ### 🎨 Experiencia de Usuario (UX)
