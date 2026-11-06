@@ -6,6 +6,20 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 
 ---
 
+## [1.2.8] - 2026-11-06
+
+### 📱 Anclaje Matemático y Proporción Móvil Perfecta en la Cabecera (`BrandIntroAnimation`)
+- **Bloqueo Relativo al Contenedor Real del Logotipo**:
+  - Se estructuró el stage como un `inline-flex` que adopta exactamente las dimensiones reales de la imagen del logotipo, garantizando que el origen y las coordenadas sean independientes del ancho de pantalla del móvil.
+- **Eliminación de la Desconfiguración en Smartphones**:
+  - Sustituida la interpolación basada en píxeles fijos por un sistema de coordenadas porcentuales (`left: -6%` a `110%` y `top: 65%`).
+  - El bolígrafo Legami recorre con precisión milimétrica la palabra "Martenscrap" tanto en pantallas ultracompactas (iPhone SE, Galaxy Fold) como en monitores 4K.
+  - Redimensionada la mano en móvil a escala proporcional (`w-24` / 96px frente a los 80px del logo), evitando que cubra toda la pantalla o se desplace hacia zonas vacías.
+- **Sincronización de Purpurina, Niebla y Tinta**:
+  - Los destellos de purpurina (`top: 98.2%`, `left: 14.3%`) y la revelación por `clip-path` están 100% coordinados con la punta del bolígrafo.
+
+---
+
 ## [1.2.7] - 2026-11-06
 
 ### ✨ Perfeccionamiento & Fluidez de la Animación de Cabecera Martenscrap
