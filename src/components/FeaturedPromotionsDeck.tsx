@@ -5,7 +5,6 @@ import {
   ChevronRight, 
   ArrowRight,
   Calendar,
-  BookOpen,
   MapPin,
   Gift,
   X,
@@ -276,8 +275,16 @@ export const FeaturedPromotionsDeck: React.FC<FeaturedPromotionsDeckProps> = ({
                   }}
                   onClick={() => {
                     setActiveCardIndex(index);
+                    setActiveModalFeature(item);
                   }}
-                  onKeyDown={(e) => handleKeyDown(e, index)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setActiveModalFeature(item);
+                    } else {
+                      handleKeyDown(e, index);
+                    }
+                  }}
                   style={{
                     ...transformStyles,
                     transition: 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease, opacity 0.3s ease'
@@ -404,28 +411,17 @@ export const FeaturedPromotionsDeck: React.FC<FeaturedPromotionsDeckProps> = ({
                       </div>
                     </div>
 
-                    {/* CTA Actions */}
-                    <div className="pt-2 flex items-center justify-between border-t border-stone-100 gap-1.5">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setActiveModalFeature(item);
-                        }}
-                        className="text-[11px] font-bold text-stone-700 hover:text-[#9333EA] flex items-center gap-1 transition-colors cursor-pointer shrink-0"
-                      >
-                        <BookOpen className="w-3.5 h-3.5" />
-                        <span>Crónica</span>
-                      </button>
-
+                    {/* CTA Action (Full Width Button) */}
+                    <div className="pt-2 border-t border-stone-100">
                       <button
                         onClick={(e) => handleCtaClick(e, item)}
-                        className="flex items-center gap-1 px-2.5 lg:px-3 py-1.5 rounded-xl bg-[#1C1917] hover:bg-[#9333EA] text-white text-[11px] font-extrabold shadow-sm hover:shadow-purple-500/25 transition-all transform active:scale-95 cursor-pointer truncate"
+                        className="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-[#1C1917] hover:bg-[#9333EA] text-white text-[11px] font-extrabold shadow-sm hover:shadow-purple-500/25 transition-all transform active:scale-95 cursor-pointer"
                       >
-                        {item.targetAction === 'box' && <Gift className="w-3 h-3 text-purple-300 shrink-0" />}
-                        {item.targetAction === 'locator' && <MapPin className="w-3 h-3 text-amber-300 shrink-0" />}
-                        {item.targetAction === 'filter' && <Compass className="w-3 h-3 text-cyan-300 shrink-0" />}
+                        {item.targetAction === 'box' && <Gift className="w-3.5 h-3.5 text-purple-300 shrink-0" />}
+                        {item.targetAction === 'locator' && <MapPin className="w-3.5 h-3.5 text-amber-300 shrink-0" />}
+                        {item.targetAction === 'filter' && <Compass className="w-3.5 h-3.5 text-cyan-300 shrink-0" />}
                         <span className="truncate">{item.ctaText}</span>
-                        <ArrowRight className="w-3 h-3 shrink-0" />
+                        <ArrowRight className="w-3.5 h-3.5 shrink-0" />
                       </button>
                     </div>
                   </div>
@@ -450,8 +446,9 @@ export const FeaturedPromotionsDeck: React.FC<FeaturedPromotionsDeckProps> = ({
                   key={item.id}
                   onClick={() => {
                     setActiveCardIndex(index);
+                    setActiveModalFeature(item);
                   }}
-                  className={`living-border snap-center shrink-0 w-[84vw] max-w-[320px] h-[500px] rounded-3xl overflow-hidden bg-white border border-[#E7E2D9] shadow-lg transition-all ${
+                  className={`living-border snap-center shrink-0 w-[84vw] max-w-[320px] h-[500px] rounded-3xl overflow-hidden bg-white border border-[#E7E2D9] shadow-lg transition-all cursor-pointer ${
                     isActive ? 'ring-2 ring-[#9333EA]' : 'opacity-95'
                   }`}
                 >

@@ -6,6 +6,17 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 
 ---
 
+## [1.2.1] - 2026-11-06
+
+### 🎨 Experiencia de Usuario (UX)
+- **Simplificación y apertura directa de crónicas en la baraja**:
+  - Eliminado el botón redundante "Crónica" del pie de cada carta.
+  - Ahora cualquier clic o pulsación sobre el cuerpo de la carta (imagen, título, etiquetas o relato) abre directamente la ventana modal con la crónica completa.
+  - El botón principal de llamada a la acción (CTA) ocupa ahora todo el ancho inferior, ofreciendo una apariencia mucho más limpia, equilibrada y fácil de pulsar en pantallas táctiles y ratón.
+  - Actualizadas las guías e indicaciones en todos los idiomas (ES, CA, EN, FR) a *"Pasa el cursor o pulsa cualquier carta para abrir su crónica en detalle"*.
+
+---
+
 ## [1.2.0] - 2026-11-06
 
 ### ✨ Añadido
