@@ -6,6 +6,21 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 
 ---
 
+## [1.2.7] - 2026-11-06
+
+### ✨ Perfeccionamiento & Fluidez de la Animación de Cabecera Martenscrap
+- **Reaparición y Calibración Real de la Mano con Bolígrafo Legami (`BrandIntroAnimation` & `index.css`)**:
+  - Corregido el desfase vertical (`translate3d`) que desplazaba la mano fuera del viewport.
+  - Anclaje matemático de la punta del bolígrafo (`14.3% X`, `98.2% Y`) con la línea base del logotipo para trazar con precisión de izquierda a derecha sobre cada letra ("M" -> "artenscrap").
+  - Escala fluida y responsiva con keyframes adaptados para dispositivos móviles (`@media (max-width: 640px)`).
+- **Erradicación del Recuadro Rectangular y Fusión Natural**:
+  - Reemplazado `overflow-hidden rounded-3xl` en el contenedor del logotipo por `overflow-visible`, eliminando los cortes bruscos en los bordes de la niebla y de la imagen.
+  - La nube de niebla atmosférica y los destellos de purpurina (`nebulaCloudLinger`) se expanden y disuelven de forma 100% orgánica y continua en el fondo general, sin ningún marco visible.
+- **Efecto de Escritura Reveladora Progresiva (`clip-path`)**:
+  - El logotipo original se va desvelando letra por letra al paso del bolígrafo mediante `clip-path: inset(...)`, transicionando al finalizar a una suave levitación permanente (`floatingLogoGentle`).
+
+---
+
 ## [1.2.6] - 2026-11-06
 
 ### 📐 Optimización de Longitud y Compactación Visual de la Página
